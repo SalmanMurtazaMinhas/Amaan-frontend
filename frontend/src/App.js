@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
@@ -76,6 +77,7 @@ export default function App() {
             <Router>
                 <nav>
                     <div>
+
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
                     <Link to="/journal">Journal</Link> &nbsp;
                     <Link to="/home">Home</Link> &nbsp;
@@ -116,5 +118,6 @@ export default function App() {
             </Router>
         </div>
     )
+
 }
 
