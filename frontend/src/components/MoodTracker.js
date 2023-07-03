@@ -5,7 +5,6 @@ import axios from "axios";
 import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
 import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
 import { faFaceMehBlank } from "@fortawesome/free-solid-svg-icons";
-import {getCurrentDate} from './utils'
 
 export default function MoodTracker() {
 
@@ -32,7 +31,6 @@ export default function MoodTracker() {
   return (
     <div className="mood-tracker">
       <h1>How are you feeling today?</h1>
-      {getCurrentDate()}
 
       <div className="mood-icons">
         <button 
