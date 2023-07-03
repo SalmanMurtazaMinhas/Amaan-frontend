@@ -58,6 +58,12 @@ export default function App() {
 
 
 
+import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
+import JournalDetail from './components/journal/journalDetail';
+
+export default function App() {
+
+    
 
     return(
         <div>
@@ -65,11 +71,12 @@ export default function App() {
             <Router>
                 <nav>
                     <div>
-                    <Link to="/create-journal">Add a Journal</Link> &nbsp;
+                    {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
                     <Link to="/journal">Journal</Link> &nbsp;
                     <Link to="/home">Home</Link> &nbsp;
                     <Link to="/about">About</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
+                    <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
                     </div>
                 </nav>
                 <Routes>
@@ -88,6 +95,12 @@ export default function App() {
                     <Route 
                     path="/signin"
                     element={<Signin login={loginHandler}></Signin>}/>
+                    <Route
+                    path='/bookappointment'
+                    element={<BookAppointmentCreate />}
+                    path='/journal/detail/:journalId'
+                    element={<JournalDetail/>}
+                    />
                 </Routes>
             </Router>
         </div>
