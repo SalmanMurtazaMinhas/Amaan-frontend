@@ -1,9 +1,16 @@
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
 import Signup from './components/user/Signup';
 import Signin from './components/user/Signin';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import 'react-calendar/dist/Calendar.css';
+import MoodTracker from './components/MoodTracker';
+import '../src/App.css'
+import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
+import JournalDetail from './components/journal/journalDetail'
 import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 
@@ -58,6 +65,9 @@ export default function App() {
 
 
 
+
+    
+
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
 import JournalDetail from './components/journal/journalDetail';
 
@@ -98,11 +108,14 @@ export default function App() {
                     <Route
                     path='/bookappointment'
                     element={<BookAppointmentCreate />}
-                    path='/journal/detail/:journalId'
+                    />
+                    <Route
                     element={<JournalDetail/>}
                     />
                 </Routes>
             </Router>
         </div>
     )
+}
+
 }
