@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
+import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
 import JournalDetail from './components/journal/journalDetail';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
                     <div>
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
                     <Link to="/journal">Journal</Link> &nbsp;
+                    <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
                     </div>
                 </nav>
                 <Routes>
@@ -28,6 +30,8 @@ export default function App() {
                     element={<JournalIndex />}
                     />
                     <Route
+                    path='/bookappointment'
+                    element={<BookAppointmentCreate />}
                     path='/journal/detail/:journalId'
                     element={<JournalDetail/>}
                     />
