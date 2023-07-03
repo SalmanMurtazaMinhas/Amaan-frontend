@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
 export default function JournalIndex(){
@@ -18,7 +19,7 @@ export default function JournalIndex(){
         const formattedData = convertToJsonToEditor(response.data);
         console.log('formattedData:',formattedData);
         setJournals(formattedData)
-        
+
     }
 
     const convertToJsonToEditor = (journalData) => {
@@ -39,22 +40,25 @@ export default function JournalIndex(){
     const allJournals = journals.map(journal => {
         return (
             <div key={journal._id}>
-                <h3>{journal.title}</h3>
-                <div style={{  backgroundColor: 'pink' }}>
+
+                <Link to={`/journal/detail/${journal._id}`}><h3>{journal.title}</h3></Link>
+                {/* <div style={{  backgroundColor: 'pink' }}>
                 <Editor
                     readOnly={true}
                     editorState={journal.editorBody}
-        // onChange={this._handleChange}
                 />
-                </div>
+                
+                </div> */}
          
-                {/* <button onClick={() => {handleDelete(journal._id)}}>Delete</button> */}
+                <button onClick={() => {handleDelete(journal._id)}}>Delete</button>
             </div>
         )
     })
 
     return (
         <>
+
+        <Link to="/create-journal">Add a Journal</Link> &nbsp;
         {allJournals}
         </>
     )
