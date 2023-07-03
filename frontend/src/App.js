@@ -11,13 +11,7 @@ import MoodTracker from './components/MoodTracker';
 import '../src/App.css'
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
-import { useState, useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
     
-
-import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
-import JournalDetail from './components/journal/journalDetail';
-
 
 
 export default function App() {
@@ -99,6 +93,10 @@ export default function App() {
                     path='/journal'
                     element={<JournalIndex />}
                     />
+                    <Route
+                    path='/mood'
+                    element={<MoodTracker />}
+                    />
                     <Route 
                     path="/signup"
                     element={<Signup register={registerHandler}></Signup>}
@@ -112,6 +110,7 @@ export default function App() {
                     />
                     <Route
                     element={<JournalDetail/>}
+                    path='./journal/detail/:journalId'
                     />
                 </Routes>
             </Router>
