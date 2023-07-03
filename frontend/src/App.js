@@ -14,6 +14,12 @@ import BookAppointmentCreate from './components/BookAppointment/BookAppointmentC
 import JournalDetail from './components/journal/journalDetail'
 import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+    
+
+import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
+import JournalDetail from './components/journal/journalDetail';
+
+
 
 export default function App() {
 
@@ -44,6 +50,7 @@ export default function App() {
           console.log(err.message)
         })
     }
+    
 
     const loginHandler = (cred) => {
         axios.post("auth/signin", cred)
@@ -67,12 +74,6 @@ export default function App() {
 
 
 
-    
-
-import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate';
-import JournalDetail from './components/journal/journalDetail';
-
-export default function App() {
 
     
 
@@ -124,4 +125,3 @@ export default function App() {
 
 }
 
-}
