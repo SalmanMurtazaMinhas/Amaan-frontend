@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
-import ToolBar from '@material-ui/core/ToolBar'
+// import ToolBar from '@material-ui/core/ToolBar'
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
