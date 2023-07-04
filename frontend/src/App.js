@@ -63,6 +63,13 @@ export default function App() {
 
 
 
+    const logoutHandler = (e) => {
+        e.preventDefault() // do not reload page
+        localStorage.removeItem("token")
+        setIsAuth(false)
+        setUser(null)
+      }
+    
 
 
 
@@ -78,9 +85,12 @@ export default function App() {
                     <Link to="/journal">Journal</Link> &nbsp;
                     <Link to="/home">Home</Link> &nbsp;
                     <Link to="/about">About</Link> &nbsp;
+                    <Link to="/mood">Mood</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
                     <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
-                    <Link to="/mood">Mood</Link> &nbsp;
+
+        { isAuth && <Link to='/logout' onClick={logoutHandler}>logout</Link> }
+
                     </div>
                 </nav>
                 <Routes>
