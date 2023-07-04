@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Typography from '@material-ui/core/Typography'
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import AppBar from '@material-ui/core/AppBar'
+import ToolBar from '@material-ui/core/ToolBar'
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
@@ -13,7 +17,23 @@ import BookAppointmentCreate from './components/BookAppointment/BookAppointmentC
 import JournalDetail from './components/journal/journalDetail'
 import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
     
+const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#ebe6f6',
+            main: '#BEAEE2',
+            dark: '#a088d5'
+        },
+        secondary: {
+            main: '#F7DBF0',
 
+        }
+    },
+    typography: {
+        fontFamily: 'Didact Gothic',
+        fontSize: 16
+    }
+})
 
 export default function App() {
 
@@ -49,21 +69,28 @@ export default function App() {
     const loginHandler = (cred) => {
         axios.post("auth/signin", cred)
         .then(res => {
+            console.log(res)
             console.log(res.data.token)
-
+            console.log("You are logged in!")
             let token = res.data.token;
             if (token != null){
                 localStorage.setItem("token", token);
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
-                return <Navigate to="/journalCreate" />
+                return <Navigate to="/" />
             }
         }).catch(error => {
             console.log(error)
         })
     }
 
+    const logoutHandler = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        setIsAuth(false)
+        setUser(null)
+    }
 
 
     const logoutHandler = (e) => {
@@ -79,8 +106,19 @@ export default function App() {
     
 
     return(
-        <div>
-            <h1>React App</h1>
+        <ThemeProvider theme={theme}>
+            <div>
+            <Typography 
+            variant="h4"
+            color="secondary"
+            align="left">
+                Amaan
+            </Typography>
+            {/* <AppBar>
+                <ToolBar>
+                    <Typography></Typography>
+                </ToolBar>
+            </AppBar> */}
             <Router>
                 <nav>
                     <div>
@@ -91,6 +129,7 @@ export default function App() {
                     <Link to="/mood">Mood</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
                     <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
+
                     <Link to="/bookappointment/index">Appointments Index</Link> &nbsp;
 
         { isAuth && <Link to='/logout' onClick={logoutHandler}>logout</Link> }
@@ -132,6 +171,7 @@ export default function App() {
                 </Routes>
             </Router>
         </div>
+        </ThemeProvider>
     )
 }
 
