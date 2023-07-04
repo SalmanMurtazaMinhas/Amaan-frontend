@@ -85,13 +85,6 @@ export default function App() {
         })
     }
 
-    const logoutHandler = (e) => {
-        e.preventDefault();
-        localStorage.removeItem("token");
-        setIsAuth(false)
-        setUser(null)
-    }
-
 
     const logoutHandler = (e) => {
         e.preventDefault() // do not reload page
