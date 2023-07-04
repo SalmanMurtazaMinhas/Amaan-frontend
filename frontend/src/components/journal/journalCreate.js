@@ -35,7 +35,13 @@ export default function JournalCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await axios.post('journal/add', newJournal)
+        const response = await axios.post('journal/add', newJournal , 
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }
+        )
         console.log(response)
 
         if (response.status === 201){
