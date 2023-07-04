@@ -15,6 +15,7 @@ import MoodTracker from './components/MoodTracker';
 import '../src/App.css'
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
+import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
     
 const theme = createTheme({
     palette: {
@@ -92,6 +93,18 @@ export default function App() {
     }
 
 
+    const logoutHandler = (e) => {
+        e.preventDefault() // do not reload page
+        localStorage.removeItem("token")
+        setIsAuth(false)
+        setUser(null)
+      }
+    
+
+
+
+    
+
     return(
         <ThemeProvider theme={theme}>
             <div>
@@ -113,9 +126,14 @@ export default function App() {
                     <Link to="/journal">Journal</Link> &nbsp;
                     <Link to="/home">Home</Link> &nbsp;
                     <Link to="/about">About</Link> &nbsp;
+                    <Link to="/mood">Mood</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
                     <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
-                    <Link to="/logout" onClick={logoutHandler}>Logout</Link>
+
+                    <Link to="/bookappointment/index">Appointments Index</Link> &nbsp;
+
+        { isAuth && <Link to='/logout' onClick={logoutHandler}>logout</Link> }
+
                     </div>
                 </nav>
                 <Routes>
@@ -143,8 +161,12 @@ export default function App() {
                     element={<BookAppointmentCreate />}
                     />
                     <Route
+                    path='/bookappointment/index'
+                    element={<BookAppointmentIndex />}
+                    />
+                    <Route
+                    path='/journal/detail/:journalId'
                     element={<JournalDetail/>}
-                    path='./journal/detail/:journalId'
                     />
                 </Routes>
             </Router>

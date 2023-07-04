@@ -14,7 +14,13 @@ export default function JournalIndex(){
     },[])
 
     const getAllJournals = async () => {
-        const response = await axios.get('journal/index')
+        const response = await axios.get('journal/index',
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }
+        )
         console.log(response)
         const formattedData = convertToJsonToEditor(response.data);
         console.log('formattedData:',formattedData);
