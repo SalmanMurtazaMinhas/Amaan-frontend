@@ -34,24 +34,33 @@ export default function BookAppointmentCreate(){
   return (
     <div>
     <form>
+      <div>
+        <h3>Specialest</h3>
       <input
         type="text"
         placeholder="Specialest"
         onChange={handleChange}
         name="specialist"
       />
+      </div>
+      <div>
+        <h3>Time</h3>
       <input
         type="time"
         placeholder="Time"
         onChange={handleChange}
         name="time"
       />
+      </div>
+      <div>
+        <h3>Date</h3>
       <input
         type="date"
         placeholder="Date"
         onChange={handleChange}
         name="date"
       />
+      </div>
 
       <button type="submit" onClick={handleSubmit}>Book Appointment</button>
     </form>
