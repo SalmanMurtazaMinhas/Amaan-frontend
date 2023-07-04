@@ -11,6 +11,7 @@ import MoodTracker from './components/MoodTracker';
 import '../src/App.css'
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
+import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
     
 
 
@@ -90,6 +91,7 @@ export default function App() {
                     <Link to="/mood">Mood</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
                     <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
+                    <Link to="/bookappointment/index">Appointments Index</Link> &nbsp;
 
         { isAuth && <Link to='/logout' onClick={logoutHandler}>logout</Link> }
 
@@ -118,6 +120,10 @@ export default function App() {
                     <Route
                     path='/bookappointment'
                     element={<BookAppointmentCreate />}
+                    />
+                    <Route
+                    path='/bookappointment/index'
+                    element={<BookAppointmentIndex />}
                     />
                     <Route
                     element={<JournalDetail/>}
