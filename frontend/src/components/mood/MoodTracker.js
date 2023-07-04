@@ -5,6 +5,14 @@ import axios from "axios";
 import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
 import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
 import { faFaceMehBlank } from "@fortawesome/free-solid-svg-icons";
+import '../mood/mood.css'
+
+
+
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/en';
 
 export default function MoodTracker() {
 
@@ -29,6 +37,7 @@ export default function MoodTracker() {
       });
   };
   return (
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
     <div className="mood-tracker">
       <h1>How are you feeling today?</h1>
 
@@ -70,6 +79,9 @@ export default function MoodTracker() {
       <Button variant="primary" onClick={handleSaveMood}>
         Save
       </Button>
+
+      <DateCalendar />
     </div>
+    </LocalizationProvider>
   );
 }

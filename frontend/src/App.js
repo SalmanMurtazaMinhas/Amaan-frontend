@@ -6,9 +6,7 @@ import Signup from './components/user/Signup';
 import Signin from './components/user/Signin';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import 'react-calendar/dist/Calendar.css';
-import MoodTracker from './components/MoodTracker';
-import '../src/App.css'
+import MoodTracker from './components/mood/MoodTracker';
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
     
@@ -82,6 +80,7 @@ export default function App() {
                     <Link to="/about">About</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
                     <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
+                    <Link to="/mood">Mood</Link> &nbsp;
                     </div>
                 </nav>
                 <Routes>
