@@ -120,8 +120,8 @@ export default function App() {
                     element={<BookAppointmentCreate />}
                     />
                     <Route
+                    path='/journal/detail/:journalId'
                     element={<JournalDetail/>}
-                    path='./journal/detail/:journalId'
                     />
                 </Routes>
             </Router>
