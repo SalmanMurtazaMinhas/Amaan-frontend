@@ -5,11 +5,22 @@ import axios from "axios";
 import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
 import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
 import { faFaceMehBlank } from "@fortawesome/free-solid-svg-icons";
+import moment from 'moment';
+import '../mood/mood.css'
+
+
+
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/en';
 
 export default function MoodTracker() {
 
 
   const [mood, setMood] = useState({ mood: null });
+  const [userMessage, setUserMessage] = useState('')
+
 
   const handleMoodChange = (mood) => {
     const currentmood = mood;
@@ -19,23 +30,36 @@ export default function MoodTracker() {
   };
 
   const handleSaveMood = async (e) => {
-    await axios
-      .post("/mood/add", { mood })
-      .then((res) => {
-        console.log(`Mood has been saved as ${mood}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try 
+{    e.preventDefault()
+    // mood.date = new Date()
+    
+    const response = await axios.post('mood/add', mood)
+    console.log(response)
+
+    if (response.status === 201){
+      setUserMessage('Your Mood Has Been Added')
+  }
+  else setUserMessage('Something Went Wrong')}
+  
+  catch(error){
+    console.log(error.message)
+  }
+
+     
   };
   return (
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
     <div className="mood-tracker">
       <h1>How are you feeling today?</h1>
+
+{moment().format("dddd, MMMM Do YYYY")}
+
 
       <div className="mood-icons">
         <button 
         className="mood"
-         onClick={() => handleMoodChange("Happy")}>
+         onClick={() => handleMoodChange(faFaceSmileBeam)}>
         <FontAwesomeIcon
           className="mood-icon"
           icon={faFaceSmileBeam}
@@ -47,7 +71,7 @@ export default function MoodTracker() {
         <button
         className="mood"
 
-         onClick={() => handleMoodChange("Meh")}>
+         onClick={() => handleMoodChange(faFaceMehBlank)}>
         <FontAwesomeIcon
           className="mood-icon"
           icon={faFaceMehBlank}
@@ -57,7 +81,7 @@ export default function MoodTracker() {
         </button>
         <button
         className="mood"
-         onClick={() => handleMoodChange("Sad")}>
+         onClick={() => handleMoodChange(faFaceFrownOpen)}>
         <FontAwesomeIcon
           className="mood-icon"
           icon={faFaceFrownOpen}
@@ -70,6 +94,9 @@ export default function MoodTracker() {
       <Button variant="primary" onClick={handleSaveMood}>
         Save
       </Button>
+
+      <DateCalendar />
     </div>
+    </LocalizationProvider>
   );
 }

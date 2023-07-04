@@ -10,9 +10,7 @@ import Signup from './components/user/Signup';
 import Signin from './components/user/Signin';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import 'react-calendar/dist/Calendar.css';
-import MoodTracker from './components/MoodTracker';
-import '../src/App.css'
+import MoodTracker from './components/mood/MoodTracker';
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
 import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
