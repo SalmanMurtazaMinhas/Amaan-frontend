@@ -122,6 +122,10 @@ export default function App() {
                     </div>
                 </nav>
                 <Routes>
+                <Route
+                    path='/'
+                    element={<HomePage />}
+                    />
                     <Route
                     path='/create-journal'
                     element={<JournalCreate />}
@@ -159,15 +163,7 @@ export default function App() {
             <Typography 
             variant='h4'
             >
-                Hello, {user.firstName}
             </Typography>
-
-            <HomePage />
-            <>
-
-
-            {/* <img className="homepage" id="homepageImg"src={homepageImg} /> */}
-            </>
             
             </>
         </div>
