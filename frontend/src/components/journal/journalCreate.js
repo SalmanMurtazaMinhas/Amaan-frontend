@@ -1,8 +1,24 @@
 import React, {useState} from 'react'
-import {Container, Form, Button} from "react-bootstrap"
+import {Container, Form } from "react-bootstrap"
 import axios from 'axios'
 import {DraftRichText} from '../UniversalComponents';
 import {EditorState, convertToRaw} from 'draft-js'
+import JournalCreateImage from '../../images/NightSky.png'
+import { Button, withStyles } from '@material-ui/core'
+
+const JournalButton = withStyles({
+    root: {
+        background: '#BEAEE2',
+        color: '#FFFFFF',
+        marginTop: '10px',
+        marginLeft: '40px',
+        width: '150px',
+      '&:hover' : {
+        background: '#CDF0EA',
+        color: '#000'
+      }
+    }
+})(Button);
 
 export default function JournalCreate() {
 
@@ -52,26 +68,35 @@ export default function JournalCreate() {
 
   return (
     <div>
-        <h1>Journal</h1>
+        
+        <h2 className="journalTitle">What's on your mind? Let it out.</h2>
+        <div class="createJournal">
         <Container>
             <Form.Group>
-                <Form.Label>Title</Form.Label>
-                <Form.Control name="title" onChange={handleChange} ></Form.Control>
+                <Form.Label className="journalLabel">Title</Form.Label>
+                <Form.Control name="title" onChange={handleChange} className="journalInput"></Form.Control>
             </Form.Group>
             <Form.Group>
-                <Form.Label>Journal</Form.Label>
+                <Form.Label className="journalLabel">Date</Form.Label>
+                <Form.Control name="date" type='date' onChange={handleChange} className="journalInput"></Form.Control>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label className="journalLabel">Journal</Form.Label>
                 {/* <Form.Control name="body" onChange={handleChange} ></Form.Control> */}
             </Form.Group>
             <DraftRichText onChangeCallBack={handleValueChange}  />
 
 
-            <Form.Group>
-                <Form.Label>Date</Form.Label>
-                <Form.Control name="date" type='date' onChange={handleChange} ></Form.Control>
-            </Form.Group>
+            {/* <Form.Group>
+                <Form.Label className="journalLabel">Date</Form.Label>
+                <Form.Control name="date" type='date' onChange={handleChange} className="journalInput"></Form.Control>
+            </Form.Group> */}
 
-            <Button  variant='primary' onClick={handleSubmit}>Save</Button>
+            <JournalButton  variant='primary' onClick={handleSubmit}>Save</JournalButton>
         </Container>
+        <img className="createJournalImg" src={JournalCreateImage} alt=""/>
+        </div>
+        
     </div>
   )
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
+import JournalImage from '../../images/MessyThoughts.png'
+
 
 export default function JournalDetail(){
 
@@ -36,7 +38,8 @@ export default function JournalDetail(){
     if (!loading) {
         return (
             <>
-                <Link to="/create-journal">Add a Journal</Link> &nbsp;
+                <Link to="/create-journal"><h2>Add a Journal</h2></Link> &nbsp;
+                {/* <img src={JournalImage} alt=""/> */}
                 <div style={{  backgroundColor: 'pink' }}>
                     <Editor
                     readOnly={true}
