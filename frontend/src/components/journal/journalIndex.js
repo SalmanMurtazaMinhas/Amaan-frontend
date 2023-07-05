@@ -5,9 +5,11 @@ import { convertFromRaw, EditorState, Editor } from 'draft-js';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
-export default function JournalIndex(){
+export default function JournalIndex(props){
 
     const [journals, setJournals] = useState([])
+    const [userId, setUserId] = useState(props.userid)
+    console.log(props)
 
     useEffect(() => {
         getAllJournals()
@@ -44,7 +46,9 @@ export default function JournalIndex(){
     }
 
     const allJournals = journals.map(journal => {
-        return (
+
+        if(journal.user === userId){
+      return (
             <div key={journal._id}>
 
                 <Link to={`/journal/detail/${journal._id}`}><h3>{journal.title}</h3></Link>
@@ -59,6 +63,9 @@ export default function JournalIndex(){
                 <button onClick={() => {handleDelete(journal._id)}}>Delete</button>
             </div>
         )
+        }
+
+  
     })
 
     return (
