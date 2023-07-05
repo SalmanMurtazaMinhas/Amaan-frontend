@@ -16,7 +16,9 @@ import JournalDetail from './components/journal/journalDetail'
 import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
 // import homepageImg from './images/DrawKit Vector Illustration Mental Health & Psychology (6).png'
 import HomePage from './components/home/HomePage';
-    
+import SpecialistCreate from './components/Specialist/SpecialistCreate';
+import SpecialistIndex from './components/Specialist/SpecialistIndex';
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -116,6 +118,8 @@ export default function App() {
                     <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link> &nbsp;
                     <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp;
                     <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp;
+                    <Link to="/specialist/index" className="navItem">Specialists Index</Link> &nbsp;
+                    <Link to="/specialist" className="navItem">Specialists</Link> &nbsp;
 
                     { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> }
 
@@ -157,6 +161,14 @@ export default function App() {
                     <Route
                     path='/journal/detail/:journalId'
                     element={<JournalDetail/>}
+                    />
+                    <Route
+                    path='/specialist'
+                    element={<SpecialistCreate />}
+                    />
+                    <Route
+                    path='/specialist/index'
+                    element={<SpecialistIndex />}
                     />
                 </Routes>
             </Router>
