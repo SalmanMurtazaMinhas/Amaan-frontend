@@ -40,6 +40,9 @@ export default function App() {
 
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
+  const [loaded, setLoaded] = useState(false)
+
+    
 
     useEffect(() => {
         let token = localStorage.getItem("token")
@@ -50,6 +53,7 @@ export default function App() {
             if (user){
                 setIsAuth(true)
                 setUser(user)
+                setLoaded(true)
             } else if (!user){
                 localStorage.remove("token")
                 setIsAuth(false)
@@ -137,11 +141,11 @@ export default function App() {
                     />
                     <Route
                     path='/journal'
-                    element={<JournalIndex userid= { user?.user? user.user.id : null} />}
+                    element={loaded && <JournalIndex userid= { user?.user? user.user.id : null} />}
                     />
                     <Route
                     path='/mood'
-                    element={<MoodTracker />}
+                    element={loaded && <MoodTracker userid= { user?.user? user.user.id : null}/>}
                     />
                     <Route 
                     path="/signup"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -15,13 +15,37 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/en';
 
-export default function MoodTracker() {
+export default function MoodTracker(props) {
 
-
+  
   const [mood, setMood] = useState({ mood: null });
   const [userMessage, setUserMessage] = useState('')
 
+  const [moods, setMoods] = useState([])
+    const [userId, setUserId] = useState(props.userid)
+    console.log(userId)
+    console.log(props.userid)
 
+
+
+
+    useEffect(() => {
+      getAllMoods()
+
+  },[])
+
+  const getAllMoods = async () => {
+    const response = await axios.get('mood/index',
+    {
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+    }
+    )
+    console.log(response)
+    setMoods(response.data)
+
+}
   const handleMoodChange = (mood) => {
     const currentmood = mood;
     console.log(mood)
@@ -29,12 +53,20 @@ export default function MoodTracker() {
     
   };
 
+
+
   const handleSaveMood = async (e) => {
     try 
 {    e.preventDefault()
     mood.date = new Date()
     
-    const response = await axios.post('mood/add', mood)
+            const response = await axios.post('mood/add', mood , 
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        }
+        )
     console.log(response)
 
     if (response.status === 201){
@@ -48,6 +80,21 @@ export default function MoodTracker() {
 
      
   };
+
+  const allMoods = moods.map ( mood => {
+
+        if(mood.user === userId){
+return (
+  <div>
+    {mood.user}
+    <h3>{mood.iconName}</h3>
+  </div>
+)
+
+        }
+      
+      })
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
     <div className="mood-tracker">
@@ -95,7 +142,8 @@ export default function MoodTracker() {
         Save
       </Button>
 
-      <DateCalendar />
+{allMoods}
+      {/* <DateCalendar /> */}
     </div>
     </LocalizationProvider>
   );
