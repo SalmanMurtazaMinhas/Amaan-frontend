@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography'
 import { createTheme, ThemeProvider } from '@material-ui/core'
-import AppBar from '@material-ui/core/AppBar'
+// import AppBar from '@material-ui/core/AppBar'
 // import ToolBar from '@material-ui/core/ToolBar'
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
@@ -14,6 +14,8 @@ import MoodTracker from './components/mood/MoodTracker';
 import BookAppointmentCreate from './components/BookAppointment/BookAppointmentCreate'
 import JournalDetail from './components/journal/journalDetail'
 import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIndex';
+// import homepageImg from './images/DrawKit Vector Illustration Mental Health & Psychology (6).png'
+import HomePage from './components/home/HomePage';
     
 const theme = createTheme({
     palette: {
@@ -24,12 +26,11 @@ const theme = createTheme({
         },
         secondary: {
             main: '#F7DBF0',
-
         }
     },
     typography: {
         fontFamily: 'Didact Gothic',
-        fontSize: 16
+        fontSize: 16,
     }
 })
 
@@ -92,38 +93,29 @@ export default function App() {
       }
     
 
-
-
-    
-
     return(
         <ThemeProvider theme={theme}>
             <div>
-            <Typography 
-            variant="h4"
-            color="secondary"
-            align="left">
-                Amaan
-            </Typography>
-            {/* <AppBar>
-                <ToolBar>
-                    <Typography></Typography>
-                </ToolBar>
-            </AppBar> */}
             <Router>
-                <nav>
+                
+                <nav className="navBar">
                     <div>
+                    {/* <Typography 
+                    variant="h5"
+                    color="secondary"
+                    align="left">
+                      Amaan
+                    </Typography> */}
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
-                    <Link to="/journal">Journal</Link> &nbsp;
-                    <Link to="/home">Home</Link> &nbsp;
-                    <Link to="/about">About</Link> &nbsp;
-                    <Link to="/mood">Mood</Link> &nbsp;
-                    <Link to="/signin" onClick={loginHandler}>Login</Link> &nbsp;
-                    <Link to="/bookappointment">Book An Appointment</Link> &nbsp;
+                    <Link to="/journal" className="navItem">Journal</Link> &nbsp;
+                    <Link to="/" className="navItem">Home</Link> &nbsp;
+                    <Link to="/about" className="navItem">About</Link> &nbsp;
+                    <Link to="/mood" className="navItem">Mood</Link> &nbsp;
+                    <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link> &nbsp;
+                    <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp;
+                    <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp;
 
-                    <Link to="/bookappointment/index">Appointments Index</Link> &nbsp;
-
-        { isAuth && <Link to='/logout' onClick={logoutHandler}>logout</Link> }
+                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">logout</Link> }
 
                     </div>
                 </nav>
@@ -161,6 +153,21 @@ export default function App() {
                     />
                 </Routes>
             </Router>
+            <>
+            <Typography 
+            variant='h4'
+            >
+                Hello, {user.firstName}
+            </Typography>
+
+            <HomePage />
+            <>
+
+
+            {/* <img className="homepage" id="homepageImg"src={homepageImg} /> */}
+            </>
+            
+            </>
         </div>
         </ThemeProvider>
     )

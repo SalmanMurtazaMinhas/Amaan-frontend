@@ -2,3 +2,36 @@
   text-align: center;
 }
  */
+
+body {
+  background-color: #f9f9f9;
+}
+
+.navBar {
+  background-color: #BEAEE2;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navItem {
+  margin: 5px;
+  text-decoration: none;
+  font-family: 'Didact Gothic';
+  font-size: 17px;
+  color: #FFF;
+}
+
+.navItem:hover {
+  color: #CDF0EA;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: row;
+}
+
+#homepageImg {
+  width: 500px;
+  margin-left: 100px;
+}

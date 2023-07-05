@@ -1,13 +1,46 @@
 import React, { useState } from 'react'; 
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import {Container, Form} from "react-bootstrap"
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { Typography } from '@material-ui/core';
+import { Container, Form } from "react-bootstrap"
+
+const customStyles = makeStyles({
+    field: {
+        marginTop: 20,
+        marginBottom: 20,
+        display: 'block',
+        textAlign: 'center',
+    }, 
+    card: {
+        width: '100%',
+        height: 430,
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    container: {
+        paddingLeft: 50,
+        paddingRight: 50,
+    },
+    cardSignin: {
+        width: '50%',
+        height: 390,
+        paddingTop: 20,
+    }, 
+    header: {
+        color: '#a088d5',
+        textAlign: 'center',
+        fontSize: 30,
+    }
+})
 
 const StyledButton = withStyles({
     root: {
       background: '#BEAEE2',
       color: '#FFFFFF',
-      width: 150,
+      width: '100%',
       fontSize: 15,
       marginTop: 5,
       '&:hover' : {
@@ -21,6 +54,7 @@ const StyledButton = withStyles({
   })(Button);
 
 export default function Signin(props) {
+    const classes = customStyles()
 
     const [newUser, setNewUser] = useState({});
 
@@ -37,25 +71,46 @@ export default function Signin(props) {
     }
 
   return (
-    <div>
-        <h1>Signin</h1>
-        <Container>
-
-            <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control name="emailAddress" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control name="password" type="password" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <StyledButton onClick={loginHandler}
-            variant='primary'>
-                Login
-            </StyledButton>
-            <p>Don't have an account? <a href='/signup'>Signup here</a></p>
-        </Container>
+    <div className={classes.card}>
+        <Card className={classes.cardSignin}>
+            <CardContent>
+                <Container className={classes.container}>
+                    <Typography
+                    className={classes.header}
+                    >
+                        LOG INTO YOUR ACCOUNT
+                    </Typography>
+                    <form>
+                        <TextField
+                        className={classes.field}
+                        label="Email Address"
+                        name="emailAddress"
+                        onChange={changeHandler}
+                        fullWidth
+                        required
+                        >  
+                        </TextField>
+                    
+                        <TextField
+                        className={classes.field}
+                        label="Password"
+                        type="password"
+                        name="password"
+                        onChange={changeHandler}
+                        fullWidth
+                        required
+                        >
+                        </TextField>
+                    </form>
+                    <StyledButton onClick={loginHandler}>LOGIN</StyledButton>
+                    <Typography
+                    className={classes.field}>
+                        Don't have an account? <a href='/signup'>Signup</a>
+                    </Typography>
+                </Container>
+            </CardContent>
+        </Card>
     </div>
+
   )
 }
