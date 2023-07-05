@@ -5,6 +5,7 @@
 
 body {
   background-color: #f9f9f9;
+  font-family: 'Didact Gothic';
 }
 
 .navBar {
@@ -26,12 +27,74 @@ body {
   color: #CDF0EA;
 }
 
-.homepage {
+.firstsection {
   display: flex;
   flex-direction: row;
+  margin: 60px 20px;
 }
 
 #homepageImg {
-  width: 500px;
+  width: 450px;
   margin-left: 100px;
+}
+
+.homepageGreeting {
+  margin-left: 110px;
+  margin-top: 80px;
+}
+.sentence {
+  text-align: center;
+  margin: 60px;
+}
+
+
+.ourServices {
+  margin: 60px 20px;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.service {
+  font-family: 'Didact Gothic';
+  text-align: center;
+  border: 1px solid #CDF0EA;
+  border-radius: 3px;
+  background-color: #CDF0EA;
+  width: 300px;
+  height: 288px;
+  margin: 10px;
+  color: #000;
+}
+
+.images {
+  width:250px;
+}
+
+.titleAndDescription {
+  background-color: #ebe6f6;
+  border-radius: 5px;
+}
+
+.app-mood {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 20px;
+  background-color: #F7DBF0;
+}
+
+.app-and-mood {
+  margin: 10px;
+  width: 600px;
+  height: 300px;
+  padding: 10px;
+}
+
+.app-and-mood2 {
+  border-left: 1px solid black;
+  margin: 10px;
+  width: 600px;
+  height: 300px;
+  padding: 10px;
 }
