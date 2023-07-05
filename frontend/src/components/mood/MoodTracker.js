@@ -24,7 +24,6 @@ export default function MoodTracker() {
 
   const handleMoodChange = (mood) => {
     const currentmood = mood;
-    console.log(mood)
     setMood(currentmood);
     
   };
@@ -32,10 +31,15 @@ export default function MoodTracker() {
   const handleSaveMood = async (e) => {
     try 
 {    e.preventDefault()
-    // mood.date = new Date()
+    mood.date = new Date()
     
-    const response = await axios.post('mood/add', mood)
-    console.log(response)
+    const response = await axios.post('mood/add', mood , 
+    {
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+    }
+    )
 
     if (response.status === 201){
       setUserMessage('Your Mood Has Been Added')

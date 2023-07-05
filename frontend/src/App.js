@@ -69,15 +69,12 @@ export default function App() {
         axios.post("auth/signin", cred)
         .then(res => {
             console.log(res)
-            console.log(res.data.token)
-            console.log("You are logged in!")
             let token = res.data.token;
             if (token != null){
                 localStorage.setItem("token", token);
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
-                return <Navigate to="/" />
             }
         }).catch(error => {
             console.log(error)
@@ -157,7 +154,7 @@ export default function App() {
             <Typography 
             variant='h4'
             >
-                Hello, {user.firstName}
+                {/* Hello, {user.firstName} */}
             </Typography>
 
             <HomePage />

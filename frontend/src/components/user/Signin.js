@@ -5,7 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
-import { Container, Form } from "react-bootstrap"
+import { Container, Form } from "react-bootstrap";
+import { Navigate } from 'react-router-dom';
 
 const customStyles = makeStyles({
     field: {
@@ -68,6 +69,7 @@ export default function Signin(props) {
 
     const loginHandler = () => {
         props.login(newUser)
+
     }
 
   return (
@@ -91,6 +93,7 @@ export default function Signin(props) {
                         >  
                         </TextField>
                     
+
                         <TextField
                         className={classes.field}
                         label="Password"
