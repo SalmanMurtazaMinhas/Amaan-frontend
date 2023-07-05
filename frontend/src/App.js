@@ -109,19 +109,20 @@ export default function App() {
                       Amaan
                     </Typography> */}
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
-                    <Link to="/journal" className="navItem">Journal</Link> &nbsp;
                     <Link to="/" className="navItem">Home</Link> &nbsp;
                     <Link to="/about" className="navItem">About</Link> &nbsp;
                     <Link to="/mood" className="navItem">Mood</Link> &nbsp;
+                    <Link to="/journal" className="navItem">My Journals</Link> &nbsp;
                     <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link> &nbsp;
                     <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp;
                     <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp;
 
-                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">logout</Link> }
+                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> }
 
                     </div>
                 </nav>
                 <Routes>
+
                 <Route
                     path='/'
                     element={<HomePage />}
@@ -159,13 +160,9 @@ export default function App() {
                     />
                 </Routes>
             </Router>
-            <>
-            <Typography 
-            variant='h4'
-            >
-            </Typography>
+
             
-            </>
+            
         </div>
         </ThemeProvider>
     )
