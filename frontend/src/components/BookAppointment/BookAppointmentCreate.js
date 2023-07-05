@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import CounselingImg from '../../images/Counseling.png'
 
 export default function BookAppointmentCreate(){
 
@@ -32,29 +33,40 @@ export default function BookAppointmentCreate(){
   }
 
   return (
+    
     <div>
-    <form>
+      <h2 className="BookAppTitle">Book an Appointment with a Mental Health Specialist</h2>
+      <div className="bookApp">
       <div>
-        <h3>Specialest</h3>
+      <img className="counselingImg "src={CounselingImg}/>
+      </div>
+      
+      <div>
+      <form className="bookAppForm">
+      <div className="formInfo">
+        <h4>Pick a specialist</h4>
       <input
+        className="input"
         type="text"
-        placeholder="Specialest"
+        placeholder="Find a specialist"
         onChange={handleChange}
         name="specialist"
       />
       </div>
-      <div>
-        <h3>Time</h3>
+      <div className="formInfo">
+        <h4>Time</h4>
       <input
+        className="input"
         type="time"
         placeholder="Time"
         onChange={handleChange}
         name="time"
       />
       </div>
-      <div>
-        <h3>Date</h3>
+      <div className="formInfo">
+        <h4>Date</h4>
       <input
+        className="input"
         type="date"
         placeholder="Date"
         onChange={handleChange}
@@ -62,9 +74,16 @@ export default function BookAppointmentCreate(){
       />
       </div>
 
-      <button type="submit" onClick={handleSubmit}>Book Appointment</button>
+      <button 
+      className="formButton"
+      type="submit" 
+      onClick={handleSubmit}>
+        Book Appointment
+      </button>
     </form>
     <p>{userMessage}</p>
+      </div>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,24 @@ import JournalingImg from '../../images/ThoughtsWithDoctor.png'
 import TherapySessionImg from '../../images/TherapySession.png'
 import GroupSessionImg from '../../images/DarkLight.png'
 import { Typography } from '@material-ui/core'
+import { Button, withStyles } from '@material-ui/core'
+
+const StyledButtons = withStyles({
+    root: {
+      background: '#BEAEE2',
+      color: '#FFFFFF',
+      width: '300px',
+      fontSize: 15,
+      marginTop: 5,
+      '&:hover' : {
+        background: '#CDF0EA',
+        color: '#000'
+      }
+    },
+    label: {
+      textTransform: 'capitalize',
+    },
+  })(Button);
 
 export default function HomePage() {
 
@@ -17,7 +35,9 @@ export default function HomePage() {
             <h1 className="homepageGreeting">
                 Hello,  <br />
                 Not feeling like yourself lately? You are not alone. <br /> We are here to help
+                <StyledButtons>BOOK COUNSELING SESSION</StyledButtons>
             </h1>
+
             
         </div>
 
@@ -40,6 +60,7 @@ export default function HomePage() {
                 <h5>Mood Tracking</h5>
                 <p>Tracking your mood can help identify triggers and track the effectivesness of intervention.</p>
                 </div>
+                <StyledButtons>Track my mood</StyledButtons>
             </div>
             
             <div className='service'>
@@ -48,6 +69,7 @@ export default function HomePage() {
                 <h5>Journaling</h5>
                 <p>Recording your thoughts and emotions in a journal helps you process emotions, reflect and set goals.</p>
             </div>
+            <StyledButtons>Journal</StyledButtons>
             </div>
 
             <div className='service'>
@@ -56,6 +78,7 @@ export default function HomePage() {
                 <h5>Counseling Sessions</h5>
                 <p>Intervention helps you develop healthy coping mechanisms and manage a variety of mental health issues.</p>
             </div>
+            <StyledButtons>Book counseling session</StyledButtons>
             </div>
 
             <div className='service'>
@@ -64,6 +87,7 @@ export default function HomePage() {
             <h5>Support Groups</h5>
                 <p>Group therapy can provide you with support and feedback from others who share similar experiences.</p>
             </div>
+            <StyledButtons>Book support group</StyledButtons>
             </div>
 
         </div>
