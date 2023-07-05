@@ -32,7 +32,7 @@ export default function MoodTracker() {
   const handleSaveMood = async (e) => {
     try 
 {    e.preventDefault()
-    // mood.date = new Date()
+    mood.date = new Date()
     
     const response = await axios.post('mood/add', mood)
     console.log(response)

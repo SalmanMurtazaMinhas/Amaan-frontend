@@ -43,6 +43,7 @@ export default function App() {
         let token = localStorage.getItem("token")
         if (token != null){
             let user = jwt_decode(token);
+            console.log(user)
 
             if (user){
                 setIsAuth(true)
@@ -78,6 +79,7 @@ export default function App() {
                 setIsAuth(true)
                 setUser(user)
                 return <Navigate to="/" />
+                
             }
         }).catch(error => {
             console.log(error)
@@ -120,16 +122,18 @@ export default function App() {
                     </div>
                 </nav>
                 <Routes>
-                    <Route 
+
+                <Route
                     path='/'
-                    element={<HomePage />}/>
+                    element={<HomePage />}
+                    />
                     <Route
                     path='/create-journal'
                     element={<JournalCreate />}
                     />
                     <Route
                     path='/journal'
-                    element={<JournalIndex />}
+                    element={<JournalIndex userid= { user?.user? user.user.id : null} />}
                     />
                     <Route
                     path='/mood'
@@ -156,12 +160,7 @@ export default function App() {
                     />
                 </Routes>
             </Router>
-            <>
-            
 
-            
-            
-            </>
             
             
         </div>
