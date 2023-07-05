@@ -10,9 +10,14 @@ export default function JournalIndex(props){
     const [journals, setJournals] = useState([])
     const [userId, setUserId] = useState(props.userid)
     console.log(props)
+  const [loading, setLoading] = useState(true)
+
+    
 
     useEffect(() => {
         getAllJournals()
+    setLoading(false)
+
     },[])
 
     const getAllJournals = async () => {
