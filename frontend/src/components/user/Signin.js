@@ -6,6 +6,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { Container, Form } from "react-bootstrap"
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Signup from './Signup'
+
 
 const customStyles = makeStyles({
     field: {
@@ -70,6 +73,11 @@ export default function Signin(props) {
         props.login(newUser)
     }
 
+    const registerHandler = () => {
+      console.log(newUser)
+      props.register(newUser)
+  }
+
   return (
     <div className={classes.card}>
         <Card className={classes.cardSignin}>
@@ -103,9 +111,12 @@ export default function Signin(props) {
                         </TextField>
                     </form>
                     <StyledButton onClick={loginHandler}>LOGIN</StyledButton>
+                    
                     <Typography
                     className={classes.field}>
-                        Don't have an account? <a href='/signup'>Signup</a>
+
+                        Don't have an account? <Link to="/signup">Signup Here</Link> &nbsp;
+
                     </Typography>
                 </Container>
             </CardContent>
