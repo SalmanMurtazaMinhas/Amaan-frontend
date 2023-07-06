@@ -42,7 +42,7 @@ export default function App() {
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
 
-    
+    const [todayMood, setTodayMood] = useState({})
 
     useEffect(() => {
         let token = localStorage.getItem("token")
@@ -61,6 +61,9 @@ export default function App() {
         }
     }, [])
 
+    useEffect(() => {
+        setTodayMood(todayMood)
+    })
 
     const registerHandler = (user) => {
         axios.post("auth/signup", user)
@@ -133,7 +136,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage />}
+                    element={<HomePage userid ={ user?.user? user.user.id : null} todayMood={todayMood}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -141,11 +144,11 @@ export default function App() {
                     />
                     <Route
                     path='/journal'
-                    element={loaded && <JournalIndex userid= { user?.user? user.user.id : null} />}
+                    element={loaded && <JournalIndex userid={ user?.user? user.user.id : null} />}
                     />
                     <Route
                     path='/mood'
-                    element={loaded && <MoodTracker userid= { user?.user? user.user.id : null}/>}
+                    element={loaded && <MoodTracker userid={user?.user? user.user.id : null}/>}
                     />
                     <Route 
                     path="/signup"

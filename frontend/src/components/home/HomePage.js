@@ -6,6 +6,9 @@ import TherapySessionImg from '../../images/TherapySession.png'
 import GroupSessionImg from '../../images/DarkLight.png'
 import { Typography } from '@material-ui/core'
 import { Button, withStyles } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MoodTracker from '../mood/MoodTracker'
+
 
 const StyledButtons = withStyles({
     root: {
@@ -24,8 +27,10 @@ const StyledButtons = withStyles({
     },
   })(Button);
 
-export default function HomePage() {
+export default function HomePage(props) {
 
+const userid = props.userid
+const todayMood = props.todayMood
   return (
     <div>
 
@@ -47,7 +52,9 @@ export default function HomePage() {
             </div>
             
             <div className="app-and-mood2">
-                <h4>Today's mood</h4>
+                <h4>How are you feeling today?</h4>
+
+                <MoodTracker userid={userid} todayMood={todayMood} />
             </div>
         </div>
 
@@ -61,6 +68,7 @@ export default function HomePage() {
                 <p>Tracking your mood can help identify triggers and track the effectivesness of intervention.</p>
                 </div>
                 <StyledButtons>Track my mood</StyledButtons>
+
             </div>
             
             <div className='service'>
