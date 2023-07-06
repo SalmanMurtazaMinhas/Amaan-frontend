@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import CounselingImg from '../../images/Counseling.png'
 import { useNavigate } from 'react-router-dom';
 
 export default function BookAppointmentCreate(){
+  useEffect(() => {
+    getSpecialists()
+  },[])
 
   const [newAppointment, setNewAppointment] = useState({})
   const [userMessage, setUserMessage] = useState('')
+  const [specialists, setSpecialists] = useState([])
   const navigate = useNavigate()
 
   const handleChange = (event) => {
@@ -35,6 +39,19 @@ export default function BookAppointmentCreate(){
 
   }
 
+  const getSpecialists = async (e) => {
+    const specialists = await axios.get('specialist/index')
+    console.log(specialists.data)
+    
+    setSpecialists(specialists.data)
+    
+    return specialists
+  }
+
+  const allSpecialists = specialists.map(function(specialist, index){
+    return <option key={index} value={specialist._id}>{specialist.Name}</option>
+  })
+
   return (
     
     <div>
@@ -48,13 +65,16 @@ export default function BookAppointmentCreate(){
       <form className="bookAppForm">
       <div className="formInfo">
         <h4>Pick a specialist</h4>
-      <input
+      <select
         className="input"
         type="text"
         placeholder="Find a specialist"
         onChange={handleChange}
         name="specialist"
-      />
+      >
+        {allSpecialists}
+      
+      </select>
       </div>
       <div className="formInfo">
         <h4>Time</h4>
