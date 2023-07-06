@@ -42,6 +42,7 @@ export default function App() {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
+  const [status, setstatus] = useState(500)
 
     
 
@@ -67,6 +68,7 @@ export default function App() {
         axios.post("auth/signup", user)
         .then(res => {
           console.log(res)
+          setstatus(res.status)
         }).catch(err => {
           console.log(err.message)
         })
@@ -142,22 +144,22 @@ export default function App() {
                     />
                     <Route
                     path='/journal'
-                    element={loaded && <JournalIndex userid= { user?.user? user.user.id : null} />}
+                    element={loaded && isAuth ? <JournalIndex userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/mood'
-                    element={loaded && <MoodTracker userid= { user?.user? user.user.id : null}/>}
+                    element={loaded && isAuth ? <MoodTracker userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route 
                     path="/signup"
-                    element={<Signup register={registerHandler}></Signup>}
+                    element={<Signup register={registerHandler} status={status}/>}
                     />
                     <Route 
                     path="/signin"
-                    element={<Signin login={loginHandler}></Signin>}/>
+                    element={<Signin login={loginHandler}/>}/>
                     <Route
                     path='/bookappointment'
-                    element={<BookAppointmentCreate />}
+                    element={isAuth ? <BookAppointmentCreate /> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/bookappointment/index'
