@@ -1,9 +1,24 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Card, CardContent, Button, withStyles } from '@material-ui/core'
 
+
+const DeleteButton = withStyles({
+    root: {
+        background: '#000',
+        color: '#FFFFFF',
+        marginTop: '10px',
+        marginLeft: '40px',
+        width: '50%',
+        textAlign: 'center',
+      '&:hover' : {
+        background: '#CDF0EA',
+        color: '#000'
+      }
+    }
+})(Button);
 
 export default function JournalIndex(props){
 
@@ -54,19 +69,30 @@ export default function JournalIndex(props){
 
         if(journal.user === userId){
       return (
-            <div key={journal._id}>
-
-                <Link to={`/journal/detail/${journal._id}`}><h3>{journal.title}</h3></Link>
+        <div>
+            
+            <div key={journal._id} className="parentJournalCards">
+                <Card className="journalCards">
+                    <CardContent>
+                    <Link to={`/journal/detail/${journal._id}`} className="journalCardTitle"><h3>{journal.title}</h3></Link>
+                    <DeleteButton className="journalCardDeleteButton" onClick={() => {handleDelete(journal._id)}}>Delete</DeleteButton>
+                    </CardContent>
+                </Card>
+                  
                 {/* <div style={{  backgroundColor: 'pink' }}>
                 <Editor
-                    readOnly={true}
-                    editorState={journal.editorBody}
+                readOnly={true}
+                editorState={journal.editorBody}
                 />
-                
+
                 </div> */}
-         
-                <button onClick={() => {handleDelete(journal._id)}}>Delete</button>
+
+            
             </div>
+            
+        </div>
+        
+            
         )
         }
 
