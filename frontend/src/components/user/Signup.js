@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { Container, Form } from "react-bootstrap"
+import { useNavigate } from 'react-router-dom';
 
 const customStyles = makeStyles({
     field: {
@@ -55,6 +56,8 @@ const StyledButton = withStyles({
 export default function Signup(props) {
     const classes = customStyles()
     const [newUser, setNewUser] = useState({});
+    const navigate = useNavigate()
+    // console.log(props.status)
 
     const changeHandler = (e) => {
         const user = {...newUser};
@@ -66,8 +69,11 @@ export default function Signup(props) {
     }
 
     const registerHandler = () => {
-        console.log(newUser)
+        if(props.status !== 500){
+            navigate('/signin')
+        }
         props.register(newUser)
+        console.log(newUser)
     }
 
   return (

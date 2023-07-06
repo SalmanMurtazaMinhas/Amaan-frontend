@@ -9,6 +9,7 @@ import { Button, withStyles } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoodTracker from '../mood/MoodTracker'
 
+import { useNavigate, Link } from 'react-router-dom';
 
 const StyledButtons = withStyles({
     root: {
@@ -31,6 +32,12 @@ export default function HomePage(props) {
 
 const userid = props.userid
 const todayMood = props.todayMood
+  const navigate = useNavigate()
+
+   const navigateJournal = () => {
+        navigate('/journal')
+    }
+
   return (
     <div>
 
@@ -77,7 +84,7 @@ const todayMood = props.todayMood
                 <h5>Journaling</h5>
                 <p>Recording your thoughts and emotions in a journal helps you process emotions, reflect and set goals.</p>
             </div>
-            <StyledButtons>Journal</StyledButtons>
+            <StyledButtons onClick={navigateJournal} >Journal</StyledButtons>
             </div>
 
             <div className='service'>

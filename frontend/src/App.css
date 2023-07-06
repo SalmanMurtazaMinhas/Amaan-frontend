@@ -171,3 +171,50 @@ body {
   width: 700px;
   margin-left: 40px;
 }
+/* ------------------------------------------------------------------------- */
+.journalDetailImage {
+  width: 350px;
+}
+
+.addJournalButton {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.addJournalButton:hover {
+  color:#000;
+}
+/* ------------------------------------------------ */
+/* .parentJournalCards {
+  display: flex;
+} */
+.journalCards {
+  margin: 20px;
+
+  width:500px;
+}
+
+.journalCardTitle {
+  text-decoration: none;
+  text-align: center;
+  color: #000
+}
+
+.journalCardDeleteButton {
+  display: flex;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------- */
+.main-footer {
+  background-color: #BEAEE2;
+  height: 200px;
+  margin-top: 200px;
+
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-evenly;
+  color: #FFF
+}

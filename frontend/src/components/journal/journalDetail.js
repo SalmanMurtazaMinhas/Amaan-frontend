@@ -2,8 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
-import JournalImage from '../../images/MessyThoughts.png'
+import JournalDetailImage from '../../images/SheepSleep.png'
+import { Button, withStyles } from '@material-ui/core'
 
+const IndexButton = withStyles({
+    root: {
+        background: '#BEAEE2',
+        color: '#FFFFFF',
+        marginTop: '10px',
+        marginLeft: '40px',
+        width: '300px',
+      '&:hover' : {
+        background: '#CDF0EA',
+        color: '#000'
+      }
+    }
+})(Button);
 
 export default function JournalDetail(){
 
@@ -38,9 +52,10 @@ export default function JournalDetail(){
     if (!loading) {
         return (
             <>
-                <Link to="/create-journal"><h2>Add a Journal</h2></Link> &nbsp;
-                {/* <img src={JournalImage} alt=""/> */}
-                <div style={{  backgroundColor: 'pink' }}>
+                {/* <img className="journalDetailImage" src={JournalDetailImage} alt=""/> */}
+                <IndexButton><Link to="/create-journal" className="addJournalButton">Add a Journal</Link></IndexButton> &nbsp;
+                
+                <div style={{  backgroundColor: '#F7DBF0', margin: '20px', padding: '30px', width: '700px' }}>
                     <Editor
                     readOnly={true}
                     editorState={journal.data.editorBody}

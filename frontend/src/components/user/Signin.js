@@ -6,8 +6,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { Container, Form } from "react-bootstrap"
-import { Link } from 'react-router-dom'
+
+import { useNavigate, Link } from 'react-router-dom';
+
 import Signup from './Signup'
+
 
 
 const customStyles = makeStyles({
@@ -61,6 +64,8 @@ export default function Signin(props) {
 
     const [newUser, setNewUser] = useState({});
 
+    const navigate = useNavigate()
+
     const changeHandler = (e) => {
         const user = {...newUser};
 
@@ -71,7 +76,12 @@ export default function Signin(props) {
 
     const loginHandler = () => {
         props.login(newUser)
+        navigate('/')
     }
+
+    // const navigateSignup = () => {
+    //     navigate('/signup')
+    // }
 
     const registerHandler = () => {
       console.log(newUser)
@@ -115,7 +125,10 @@ export default function Signin(props) {
                     <Typography
                     className={classes.field}>
 
-                        Don't have an account? <Link to="/signup">Signup Here</Link> &nbsp;
+                        {/* Don't have an account? <Link onClick={navigateSignup()}><a>Signup</a></Link> */}
+
+
+                        Don't have an account? <Link to="/signup">Signup</Link> &nbsp;
 
                     </Typography>
                 </Container>

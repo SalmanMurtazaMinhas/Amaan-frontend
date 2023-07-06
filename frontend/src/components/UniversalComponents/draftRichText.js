@@ -159,7 +159,7 @@ class DraftRichText extends Component {
       {label: 'Blockquote', style: 'blockquote'},
       {label: 'UL', style: 'unordered-list-item'},
       {label: 'OL', style: 'ordered-list-item'},
-      {label: 'Code Block', style: 'code-block'},
+      // {label: 'Code Block', style: 'code-block'},
     ];
 
     const BlockStyleControls = (props) => {
