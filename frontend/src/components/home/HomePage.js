@@ -6,6 +6,7 @@ import TherapySessionImg from '../../images/TherapySession.png'
 import GroupSessionImg from '../../images/DarkLight.png'
 import { Typography } from '@material-ui/core'
 import { Button, withStyles } from '@material-ui/core'
+import { useNavigate, Link } from 'react-router-dom';
 
 const StyledButtons = withStyles({
     root: {
@@ -25,6 +26,12 @@ const StyledButtons = withStyles({
   })(Button);
 
 export default function HomePage() {
+
+  const navigate = useNavigate()
+
+   const navigateJournal = () => {
+        navigate('/journal')
+    }
 
   return (
     <div>
@@ -69,7 +76,7 @@ export default function HomePage() {
                 <h5>Journaling</h5>
                 <p>Recording your thoughts and emotions in a journal helps you process emotions, reflect and set goals.</p>
             </div>
-            <StyledButtons>Journal</StyledButtons>
+            <StyledButtons onClick={navigateJournal} >Journal</StyledButtons>
             </div>
 
             <div className='service'>

@@ -79,9 +79,9 @@ export default function Signin(props) {
         navigate('/')
     }
 
-    const navigateSignup = () => {
-        navigate('/signup')
-    }
+    // const navigateSignup = () => {
+    //     navigate('/signup')
+    // }
 
     const registerHandler = () => {
       console.log(newUser)
@@ -125,10 +125,10 @@ export default function Signin(props) {
                     <Typography
                     className={classes.field}>
 
-//                         Don't have an account? <Link onClick={navigateSignup()}><a>Signup</a></Link>
+                        {/* Don't have an account? <Link onClick={navigateSignup()}><a>Signup</a></Link> */}
 
 
-                        Don't have an account? <Link to="/signup">Signup Here</Link> &nbsp;
+                        Don't have an account? <Link to="/signup">Signup</Link> &nbsp;
 
                     </Typography>
                 </Container>
