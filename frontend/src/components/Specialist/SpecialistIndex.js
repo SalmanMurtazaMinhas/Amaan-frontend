@@ -32,9 +32,9 @@ export default function SpecialistIndex(){
         return (
             <div key={specialist._id}>
 
-                <h3>{specialist.name}</h3>
-                <h3>{specialist.role}</h3>
-                <h3>{specialist.yearsofexperience}</h3>
+                <h3>{specialist.Name}</h3>
+                <h3>{specialist.Role}</h3>
+                <h3>{specialist.YearsofExperience}</h3>
 
                 <button onClick={() => {handleDelete(specialist._id)}}>Delete</button>
             </div>
