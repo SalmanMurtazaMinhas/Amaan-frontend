@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 // import AppBar from '@material-ui/core/AppBar'
 // import ToolBar from '@material-ui/core/ToolBar'
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
 import Signup from './components/user/Signup';
@@ -43,6 +43,7 @@ export default function App() {
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
   const [status, setstatus] = useState(500)
+  const navigate = useNavigate()
 
     
 
@@ -87,7 +88,6 @@ export default function App() {
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
-                return <Navigate to="/" />
                 
             }
         }).catch(error => {
@@ -101,13 +101,13 @@ export default function App() {
         localStorage.removeItem("token")
         setIsAuth(false)
         setUser(null)
+        navigate("/")
       }
     
 
     return(
         <ThemeProvider theme={theme}>
             <div>
-            <Router>
                 
                 <nav className="navBar">
                     <div>
@@ -178,7 +178,6 @@ export default function App() {
                     element={<SpecialistIndex />}
                     />
                 </Routes>
-            </Router>
 
             
             <Footer />
