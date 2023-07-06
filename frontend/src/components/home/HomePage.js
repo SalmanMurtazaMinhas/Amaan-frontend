@@ -38,6 +38,17 @@ const todayMood = props.todayMood
         navigate('/journal')
     }
 
+    const navigateJHome = () => {
+      navigate('/')
+  }
+
+    const navigateBookAppointment = () => {
+      navigate('/bookappointment')
+  }
+  const navigateMoodTracker = () => {
+    navigate('/mood')
+}
+
   return (
     <div>
 
@@ -47,10 +58,9 @@ const todayMood = props.todayMood
             <h1 className="homepageGreeting">
                 Hello,  <br />
                 Not feeling like yourself lately? You are not alone. <br /> We are here to help
-                <StyledButtons>BOOK COUNSELING SESSION</StyledButtons>
+                <StyledButtons onClick={navigateBookAppointment}>BOOK COUNSELING SESSION</StyledButtons>
             </h1>
 
-            
         </div>
 
         <div className="app-mood">
@@ -74,9 +84,10 @@ const todayMood = props.todayMood
                 <h5>Mood Tracking</h5>
                 <p>Tracking your mood can help identify triggers and track the effectivesness of intervention.</p>
                 </div>
-                <StyledButtons>Track my mood</StyledButtons>
 
-            </div>
+                <StyledButtons onClick={navigateMoodTracker}>Track my mood</StyledButtons>
+
+                </div>
             
             <div className='service'>
             <img className="images" src={JournalingImg} ></img>
@@ -93,7 +104,7 @@ const todayMood = props.todayMood
                 <h5>Counseling Sessions</h5>
                 <p>Intervention helps you develop healthy coping mechanisms and manage a variety of mental health issues.</p>
             </div>
-            <StyledButtons>Book counseling session</StyledButtons>
+            <StyledButtons onClick={navigateBookAppointment}>Book counseling session</StyledButtons>
             </div>
 
             <div className='service'>
