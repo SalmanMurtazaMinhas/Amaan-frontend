@@ -7,6 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 import { Container, Form } from "react-bootstrap"
 
+import { useNavigate, Link } from 'react-router-dom';
+
+import Signup from './Signup'
+
+
+
 const customStyles = makeStyles({
     field: {
         marginTop: 20,
@@ -58,6 +64,8 @@ export default function Signin(props) {
 
     const [newUser, setNewUser] = useState({});
 
+    const navigate = useNavigate()
+
     const changeHandler = (e) => {
         const user = {...newUser};
 
@@ -68,7 +76,17 @@ export default function Signin(props) {
 
     const loginHandler = () => {
         props.login(newUser)
+        navigate('/')
     }
+
+    // const navigateSignup = () => {
+    //     navigate('/signup')
+    // }
+
+    const registerHandler = () => {
+      console.log(newUser)
+      props.register(newUser)
+  }
 
   return (
     <div className={classes.card}>
@@ -103,9 +121,15 @@ export default function Signin(props) {
                         </TextField>
                     </form>
                     <StyledButton onClick={loginHandler}>LOGIN</StyledButton>
+                    
                     <Typography
                     className={classes.field}>
-                        Don't have an account? <a href='/signup'>Signup</a>
+
+                        {/* Don't have an account? <Link onClick={navigateSignup()}><a>Signup</a></Link> */}
+
+
+                        Don't have an account? <Link to="/signup">Signup</Link> &nbsp;
+
                     </Typography>
                 </Container>
             </CardContent>

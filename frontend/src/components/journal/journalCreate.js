@@ -5,6 +5,7 @@ import {DraftRichText} from '../UniversalComponents';
 import {EditorState, convertToRaw} from 'draft-js'
 import JournalCreateImage from '../../images/NightSky.png'
 import { Button, withStyles } from '@material-ui/core'
+import { useNavigate } from 'react-router-dom';
 
 const JournalButton = withStyles({
     root: {
@@ -24,6 +25,7 @@ export default function JournalCreate() {
 
     const [newJournal, setNewJournal] = useState({title: null, body: EditorState.createEmpty()})
     const [userMessage, setUserMessage] = useState('')
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const attribute = e.target.name
@@ -62,6 +64,7 @@ export default function JournalCreate() {
 
         if (response.status === 201){
             setUserMessage('Your Journal Has Been Added')
+            navigate('/journal')
         }
         else setNewJournal('Something Went Wrong')
     }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import CounselingImg from '../../images/Counseling.png'
+import { useNavigate } from 'react-router-dom';
 
 export default function BookAppointmentCreate(){
   useEffect(() => {
@@ -10,6 +11,7 @@ export default function BookAppointmentCreate(){
   const [newAppointment, setNewAppointment] = useState({})
   const [userMessage, setUserMessage] = useState('')
   const [specialists, setSpecialists] = useState([])
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
       const attribute = event.target.name
@@ -30,6 +32,7 @@ export default function BookAppointmentCreate(){
 
       if (response.status === 201){
           setUserMessage('Your Appointment has been Booked')
+          navigate('/bookappointment/index')
       } else {
           setUserMessage('Something Went Wrong')
       }

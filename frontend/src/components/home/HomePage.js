@@ -6,6 +6,10 @@ import TherapySessionImg from '../../images/TherapySession.png'
 import GroupSessionImg from '../../images/DarkLight.png'
 import { Typography } from '@material-ui/core'
 import { Button, withStyles } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MoodTracker from '../mood/MoodTracker'
+
+import { useNavigate, Link } from 'react-router-dom';
 
 const StyledButtons = withStyles({
     root: {
@@ -24,7 +28,26 @@ const StyledButtons = withStyles({
     },
   })(Button);
 
-export default function HomePage() {
+export default function HomePage(props) {
+
+const userid = props.userid
+const todayMood = props.todayMood
+  const navigate = useNavigate()
+
+   const navigateJournal = () => {
+        navigate('/journal')
+    }
+
+    const navigateJHome = () => {
+      navigate('/')
+  }
+
+    const navigateBookAppointment = () => {
+      navigate('/bookappointment')
+  }
+  const navigateMoodTracker = () => {
+    navigate('/mood')
+}
 
   return (
     <div>
@@ -35,10 +58,9 @@ export default function HomePage() {
             <h1 className="homepageGreeting">
                 Hello,  <br />
                 Not feeling like yourself lately? You are not alone. <br /> We are here to help
-                <StyledButtons>BOOK COUNSELING SESSION</StyledButtons>
+                <StyledButtons onClick={navigateBookAppointment}>BOOK COUNSELING SESSION</StyledButtons>
             </h1>
 
-            
         </div>
 
         <div className="app-mood">
@@ -47,7 +69,9 @@ export default function HomePage() {
             </div>
             
             <div className="app-and-mood2">
-                <h4>Today's mood</h4>
+                <h4>How are you feeling today?</h4>
+
+                <MoodTracker userid={userid} todayMood={todayMood} />
             </div>
         </div>
 
@@ -60,8 +84,10 @@ export default function HomePage() {
                 <h5>Mood Tracking</h5>
                 <p>Tracking your mood can help identify triggers and track the effectivesness of intervention.</p>
                 </div>
-                <StyledButtons>Track my mood</StyledButtons>
-            </div>
+
+                <StyledButtons onClick={navigateMoodTracker}>Track my mood</StyledButtons>
+
+                </div>
             
             <div className='service'>
             <img className="images" src={JournalingImg} ></img>
@@ -69,7 +95,7 @@ export default function HomePage() {
                 <h5>Journaling</h5>
                 <p>Recording your thoughts and emotions in a journal helps you process emotions, reflect and set goals.</p>
             </div>
-            <StyledButtons>Journal</StyledButtons>
+            <StyledButtons onClick={navigateJournal} >Journal</StyledButtons>
             </div>
 
             <div className='service'>
@@ -78,7 +104,7 @@ export default function HomePage() {
                 <h5>Counseling Sessions</h5>
                 <p>Intervention helps you develop healthy coping mechanisms and manage a variety of mental health issues.</p>
             </div>
-            <StyledButtons>Book counseling session</StyledButtons>
+            <StyledButtons onClick={navigateBookAppointment}>Book counseling session</StyledButtons>
             </div>
 
             <div className='service'>

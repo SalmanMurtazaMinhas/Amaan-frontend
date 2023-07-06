@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 // import AppBar from '@material-ui/core/AppBar'
 // import ToolBar from '@material-ui/core/ToolBar'
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import JournalCreate from './components/journal/journalCreate';
 import JournalIndex from './components/journal/journalIndex';
 import Signup from './components/user/Signup';
@@ -42,8 +42,10 @@ export default function App() {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
+  const [status, setstatus] = useState(500)
+  const navigate = useNavigate()
 
-    
+    const [todayMood, setTodayMood] = useState({})
 
     useEffect(() => {
         let token = localStorage.getItem("token")
@@ -62,11 +64,15 @@ export default function App() {
         }
     }, [])
 
+    useEffect(() => {
+        setTodayMood(todayMood)
+    })
 
     const registerHandler = (user) => {
         axios.post("auth/signup", user)
         .then(res => {
           console.log(res)
+          setstatus(res.status)
         }).catch(err => {
           console.log(err.message)
         })
@@ -85,7 +91,6 @@ export default function App() {
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
-                return <Navigate to="/" />
                 
             }
         }).catch(error => {
@@ -99,13 +104,13 @@ export default function App() {
         localStorage.removeItem("token")
         setIsAuth(false)
         setUser(null)
+        navigate("/")
       }
     
 
     return(
         <ThemeProvider theme={theme}>
             <div>
-            <Router>
                 
                 <nav className="navBar">
                     <div>
@@ -134,7 +139,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage />}
+                    element={<HomePage userid ={ user?.user? user.user.id : null} todayMood={todayMood}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -142,22 +147,23 @@ export default function App() {
                     />
                     <Route
                     path='/journal'
-                    element={loaded && <JournalIndex userid= { user?.user? user.user.id : null} />}
+
+                    element={loaded && isAuth ? <JournalIndex userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/mood'
-                    element={loaded && <MoodTracker userid= { user?.user? user.user.id : null}/>}
+                    element={loaded && isAuth ? <MoodTracker userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route 
                     path="/signup"
-                    element={<Signup register={registerHandler}></Signup>}
+                    element={<Signup register={registerHandler} status={status}/>}
                     />
                     <Route 
                     path="/signin"
-                    element={<Signin login={loginHandler}></Signin>}/>
+                    element={<Signin login={loginHandler}/>}/>
                     <Route
                     path='/bookappointment'
-                    element={<BookAppointmentCreate />}
+                    element={isAuth ? <BookAppointmentCreate /> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/bookappointment/index'
@@ -176,7 +182,6 @@ export default function App() {
                     element={<SpecialistIndex />}
                     />
                 </Routes>
-            </Router>
 
             
             <Footer />
