@@ -18,6 +18,7 @@ import BookAppointmentIndex from './components/BookAppointment/BookAppointmentIn
 import HomePage from './components/home/HomePage';
 import SpecialistCreate from './components/Specialist/SpecialistCreate';
 import SpecialistIndex from './components/Specialist/SpecialistIndex';
+import Footer from './components/home/Footer';
 
 const theme = createTheme({
     palette: {
@@ -178,8 +179,8 @@ export default function App() {
             </Router>
 
             
-            
-        </div>
+            <Footer />
+             </div>
         </ThemeProvider>
     )
 }
