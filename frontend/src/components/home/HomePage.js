@@ -6,6 +6,9 @@ import TherapySessionImg from '../../images/TherapySession.png'
 import GroupSessionImg from '../../images/DarkLight.png'
 import { Typography } from '@material-ui/core'
 import { Button, withStyles } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MoodTracker from '../mood/MoodTracker'
+
 import { useNavigate, Link } from 'react-router-dom';
 
 const StyledButtons = withStyles({
@@ -25,8 +28,10 @@ const StyledButtons = withStyles({
     },
   })(Button);
 
-export default function HomePage() {
+export default function HomePage(props) {
 
+const userid = props.userid
+const todayMood = props.todayMood
   const navigate = useNavigate()
 
    const navigateJournal = () => {
@@ -64,7 +69,9 @@ export default function HomePage() {
             </div>
             
             <div className="app-and-mood2">
-                <h4>Today's mood</h4>
+                <h4>How are you feeling today?</h4>
+
+                <MoodTracker userid={userid} todayMood={todayMood} />
             </div>
         </div>
 
@@ -77,8 +84,10 @@ export default function HomePage() {
                 <h5>Mood Tracking</h5>
                 <p>Tracking your mood can help identify triggers and track the effectivesness of intervention.</p>
                 </div>
+
                 <StyledButtons onClick={navigateMoodTracker}>Track my mood</StyledButtons>
-            </div>
+
+                </div>
             
             <div className='service'>
             <img className="images" src={JournalingImg} ></img>
