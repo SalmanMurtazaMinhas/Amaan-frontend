@@ -218,3 +218,8 @@ body {
   justify-content: space-evenly;
   color: #FFF
 }
+
+/* ---------------------------------------------------------------- */
+.group-hug {
+  width: 600px;
+}
