@@ -4,7 +4,9 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Typography } from '@material-ui/core';
+import { Typography, InputAdornment, IconButton} from '@material-ui/core';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Container, Form } from "react-bootstrap"
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -32,7 +34,7 @@ const customStyles = makeStyles({
     },
     cardSignin: {
         width: '50%',
-        height: 390,
+        height: 400,
         paddingTop: 20,
     }, 
     header: {
@@ -64,6 +66,11 @@ export default function Signin(props) {
 
     const [newUser, setNewUser] = useState({});
 
+    const [validateValue, setValidateValue] = useState();
+    const [emailValidate, setEmailValidate] = useState();
+
+    const [eye, setEye] = useState(false)
+
     const navigate = useNavigate()
 
     const changeHandler = (e) => {
@@ -73,10 +80,19 @@ export default function Signin(props) {
         console.log(user);
         setNewUser(user);
     }
+    const passwordChangeHandler = (e) => {
+        changeHandler(e)
+        setValidateValue(e.target.value)
+    }
+
+    const emailChangeHandler = (e) => {
+        changeHandler(e)
+        setEmailValidate(e.target.value)
+    }
 
     const loginHandler = () => {
         props.login(newUser)
-        navigate('/')
+        
     }
 
     // const navigateSignup = () => {
@@ -86,6 +102,10 @@ export default function Signin(props) {
     const registerHandler = () => {
       console.log(newUser)
       props.register(newUser)
+  }
+
+  const eyeHandler = () => {
+    setEye(!eye)
   }
 
   return (
@@ -103,20 +123,34 @@ export default function Signin(props) {
                         className={classes.field}
                         label="Email Address"
                         name="emailAddress"
-                        onChange={changeHandler}
+                        onChange={emailChangeHandler}
                         fullWidth
                         required
+                        placeholder='Enter Your Email Address'
+                        helperText={!emailValidate? 'Email Address is required' : ''}
+                        error = {!emailValidate}
                         >  
                         </TextField>
                     
                         <TextField
                         className={classes.field}
                         label="Password"
-                        type="password"
+                        type={eye? "text" : "password"}
                         name="password"
-                        onChange={changeHandler}
+                        onChange={passwordChangeHandler}
                         fullWidth
                         required
+                        // value={validateValue}
+                        placeholder='Enter Your Password'
+                        helperText={!validateValue?'Password is required':''}
+                        error = {!validateValue}
+                        InputProps={{
+                            endAdornment: <InputAdornment position='end'>
+                                <IconButton onClick={eyeHandler}>
+                                    {eye? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                                </IconButton>
+                                </InputAdornment>
+                        }}
                         >
                         </TextField>
                     </form>

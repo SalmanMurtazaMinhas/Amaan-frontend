@@ -44,7 +44,6 @@ export default function App() {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
-  const [status, setstatus] = useState(500)
   const navigate = useNavigate()
 
     const [todayMood, setTodayMood] = useState({})
@@ -74,7 +73,11 @@ export default function App() {
         axios.post("auth/signup", user)
         .then(res => {
           console.log(res)
-          setstatus(res.status)
+
+          if(res.status === 201){
+            navigate('/signin')
+        }
+
         }).catch(err => {
           console.log(err.message)
         })
@@ -87,6 +90,11 @@ export default function App() {
             console.log(res)
             console.log(res.data.token)
             console.log("You are logged in!")
+
+            if(res.status === 200){
+                navigate('/')
+            }
+
             let token = res.data.token;
             if (token != null){
                 localStorage.setItem("token", token);
@@ -127,11 +135,11 @@ export default function App() {
                     <Link to="/about" className="navItem">About</Link> &nbsp;
                     <Link to="/mood" className="navItem">Mood</Link> &nbsp;
                     <Link to="/journal" className="navItem">My Journals</Link> &nbsp;
-                    <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link> &nbsp;
-                    <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp;
-                    <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp;
-                    <Link to="/specialist/index" className="navItem">Specialists Index</Link> &nbsp;
-                    <Link to="/specialist" className="navItem">Specialists</Link> &nbsp;
+                    {/* <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp; */}
+                    {/* <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp; */}
+                    {/* <Link to="/specialist/index" className="navItem">Specialists Index</Link> &nbsp; */}
+                    {/* <Link to="/specialist" className="navItem">Specialists</Link> &nbsp; */}
+                    {!isAuth && <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>} &nbsp;
 
                     { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> }
 
@@ -141,7 +149,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage userid ={ user?.user? user.user.id : null} todayMood={todayMood}/>}
+                    element={<HomePage userid= { user?.user? user.user.id : null} todayMood={todayMood} isAuth={isAuth}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -158,7 +166,7 @@ export default function App() {
                     />
                     <Route 
                     path="/signup"
-                    element={<Signup register={registerHandler} status={status}/>}
+                    element={<Signup register={registerHandler} />}
                     />
                     <Route 
                     path="/signin"

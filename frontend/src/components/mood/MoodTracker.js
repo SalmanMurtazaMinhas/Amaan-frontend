@@ -28,6 +28,8 @@ export default function MoodTracker(props) {
   const [moods, setMoods] = useState([]);
   const [userId, setUserId] = useState(props.userid);
 
+  const [lastMood, setLastMood] = useState('')
+
   const getDate = new Date();
   const currentYear = getDate.getFullYear();
   const currentMonth = getDate.getMonth();
@@ -42,8 +44,12 @@ export default function MoodTracker(props) {
   useEffect(() => {
     getAllMoods();
 
+
   }, []);
 
+  useEffect(() => {
+    getLastMood()
+  })
 
   const getAllMoods = async () => {
     const response = await axios.get("mood/index", {
@@ -53,7 +59,15 @@ export default function MoodTracker(props) {
     });
     // console.log(response)
     setMoods(response.data);
+
   };
+
+  const getLastMood = () => {
+    console.log(moods)
+    let lastMood = moods.splice( -1, 1)
+    console.log(lastMood)
+
+  }
 
   // Function that takes the mood of today
   // const currentMoodSetter = () => {
@@ -209,8 +223,8 @@ export default function MoodTracker(props) {
         </Button>
         <FontAwesomeIcon
           className="mood-icon"
-          icon={todayMood}
-          style={todayMood.iconName === 'face-smile-beam' ? { color: "green" } : todayMood.iconName === 'face-meh-blank' ? { color: "yellow" } : todayMood.iconName === 'face-frown-open' ? { color: "red" } : null}
+          icon={lastMood}
+          style={lastMood.mood === 'face-smile-beam' ? { color: "green" } : lastMood.mood === 'face-meh-blank' ? { color: "yellow" } : lastMood.mood === 'face-frown-open' ? { color: "red" } : null}
           size="2xl"
         />
 
