@@ -29,9 +29,17 @@ const StyledButtons = withStyles({
   })(Button);
 
 export default function HomePage(props) {
+  // console.log(props)
+
+
+
+
 
 const userid = props.userid
+// console.log(userid)
 const todayMood = props.todayMood
+
+
   const navigate = useNavigate()
 
    const navigateJournal = () => {
@@ -63,7 +71,8 @@ const todayMood = props.todayMood
 
         </div>
 
-        <div className="app-mood">
+        {props.isAuth? (
+          <div className="app-mood">
             <div className="app-and-mood">
                 <h4>Upcoming appointments</h4>
             </div>
@@ -74,6 +83,8 @@ const todayMood = props.todayMood
                 <MoodTracker userid={userid} todayMood={todayMood} />
             </div>
         </div>
+        ):(<></>)}
+        
 
         <Typography variant='h3' className="sentence">Amaan is a mental health support app <br/>that offers services to aid you in <br/>your journey towards healing</Typography>
 

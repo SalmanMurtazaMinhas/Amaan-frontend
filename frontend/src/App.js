@@ -139,7 +139,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage userid ={ user?.user? user.user.id : null} todayMood={todayMood}/>}
+                    element={<HomePage userid= { user?.user? user.user.id : null} todayMood={todayMood} isAuth={isAuth}/>}
                     />
                     <Route
                     path='/create-journal'
