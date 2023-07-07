@@ -19,6 +19,8 @@ import HomePage from './components/home/HomePage';
 import SpecialistCreate from './components/Specialist/SpecialistCreate';
 import SpecialistIndex from './components/Specialist/SpecialistIndex';
 import Footer from './components/home/Footer';
+import SupportGroupForm from './components/supportGroups/SupportGroupForm';
+import SupportGroupIndex from './components/supportGroups/SupportGroupIndex';
 
 const theme = createTheme({
     palette: {
@@ -180,6 +182,14 @@ export default function App() {
                     <Route
                     path='/specialist/index'
                     element={<SpecialistIndex />}
+                    />
+                    <Route 
+                    path='/supportgroup'
+                    element={<SupportGroupForm />}
+                    />
+                    <Route
+                    path='/supportgroup/index'
+                    element={<SupportGroupIndex />}
                     />
                 </Routes>
 
