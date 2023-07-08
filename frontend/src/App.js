@@ -21,7 +21,11 @@ import SpecialistIndex from './components/Specialist/SpecialistIndex';
 import Footer from './components/home/Footer';
 import SupportGroupForm from './components/supportGroups/SupportGroupForm';
 import SupportGroupIndex from './components/supportGroups/SupportGroupIndex';
+
 import MoodCalendar from './components/mood/MoodCalendar.js'
+
+import MyBookings from './components/supportGroups/MyBookings';
+
 
 const theme = createTheme({
     palette: {
@@ -263,6 +267,10 @@ export default function App() {
                     <Route
                     path='/supportgroup/index'
                     element={<SupportGroupIndex />}
+                    />
+                    <Route 
+                    path='/mybookings'
+                    element={<MyBookings />}
                     />
                 </Routes>
 
