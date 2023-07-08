@@ -4,9 +4,11 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Typography } from '@material-ui/core';
+import { Typography, InputAdornment, IconButton} from '@material-ui/core';
 import { Container, Form } from "react-bootstrap"
 import { useNavigate } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const customStyles = makeStyles({
     field: {
@@ -26,7 +28,7 @@ const customStyles = makeStyles({
     },
     card2: {
         width: '50%',
-        height: 480,
+        height: 550,
         paddingTop: 20,
     }, 
     header: {
@@ -56,6 +58,14 @@ const StyledButton = withStyles({
 export default function Signup(props) {
     const classes = customStyles()
     const [newUser, setNewUser] = useState({});
+
+    const [firstNameValidate, setFirstNameValidate] = useState();
+    const [lastNameValidate, setLastNameValidate] = useState();
+    const [emailValidate, setEmailValidate] = useState();
+    const [passwordValidateValue, setPasswordValidateValue] = useState();
+
+    const [eye, setEye] = useState(false)
+
     const navigate = useNavigate()
     // console.log(props.status)
 
@@ -65,16 +75,36 @@ export default function Signup(props) {
         user[e.target.name] = e.target.value;
         console.log(user);
         setNewUser(user);
-
     }
 
-    const registerHandler = () => {
-        if(props.status !== 500){
-            navigate('/signin')
-        }
+    const firstNameChangeHandler = (e) => {
+        changeHandler(e)
+        setFirstNameValidate(e.target.value)
+    }
+
+    const lastNameChangeHandler = (e) => {
+        changeHandler(e)
+        setLastNameValidate(e.target.value)
+    }
+
+    const emailChangeHandler = (e) => {
+        changeHandler(e)
+        setEmailValidate(e.target.value)
+    }
+
+    const passwordChangeHandler = (e) => {
+        changeHandler(e)
+        setPasswordValidateValue(e.target.value)
+    }
+
+    const registerHandler = (e) => {
         props.register(newUser)
         console.log(newUser)
     }
+
+    const eyeHandler = () => {
+        setEye(!eye)
+      }
 
   return (
     <div className={classes.card}>
@@ -93,9 +123,12 @@ export default function Signup(props) {
                 className={classes.field}
                 label="First Name" 
                 name="firstName"
-                onChange={changeHandler}
+                onChange={firstNameChangeHandler}
                 fullWidth
                 required
+                placeholder='Enter Your First Name'
+                helperText={!firstNameValidate?'First Name is required':''}
+                error = {!firstNameValidate}
                 >
                 </TextField>
             
@@ -103,9 +136,12 @@ export default function Signup(props) {
                 className={classes.field}
                 label="Last Name"
                 name="lastName"
-                onChange={changeHandler}
+                onChange={lastNameChangeHandler}
                 fullWidth
                 required
+                placeholder='Enter Your Last Name'
+                helperText={!lastNameValidate?'Last Name is required':''}
+                error = {!lastNameValidate}
                 >
                 </TextField>
             
@@ -113,20 +149,33 @@ export default function Signup(props) {
                 className={classes.field}
                 label="Email" 
                 name="emailAddress"
-                onChange={changeHandler}
+                onChange={emailChangeHandler}
                 fullWidth
                 required
+                placeholder='Enter Your Email Address'
+                helperText={!emailValidate?'Email Address is required':''}
+                error = {!emailValidate}
                 >
                 </TextField>
             
                 <TextField
                 className={classes.field}
                 label="Password"
-                type="password"
+                type={eye? "text" : "password"}
                 name="password"
-                onChange={changeHandler}
+                onChange={passwordChangeHandler}
                 fullWidth
                 required
+                placeholder='Enter Your Password'
+                helperText={!passwordValidateValue?'Password is required':''}
+                error = {!passwordValidateValue}
+                InputProps={{
+                    endAdornment: <InputAdornment position='end'>
+                        <IconButton onClick={eyeHandler}>
+                            {eye? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                        </IconButton>
+                        </InputAdornment>
+                }}
                 >
                 </TextField>
             </form>
