@@ -48,14 +48,20 @@ const todayMood = props.todayMood
 
     const navigateJHome = () => {
       navigate('/')
-  }
+    }
 
     const navigateBookAppointment = () => {
       navigate('/bookappointment')
-  }
-  const navigateMoodTracker = () => {
+    }
+
+    const navigateMoodTracker = () => {
     navigate('/mood')
-}
+    }
+
+    const navigateSupportGroupIndex = () => {
+    navigate('/supportgroup/index')
+    }
+
 
   return (
     <div>
@@ -124,7 +130,7 @@ const todayMood = props.todayMood
             <h5>Support Groups</h5>
                 <p>Group therapy can provide you with support and feedback from others who share similar experiences.</p>
             </div>
-            <StyledButtons>Book support group</StyledButtons>
+            <StyledButtons onClick={navigateSupportGroupIndex}>Book support group</StyledButtons>
             </div>
 
         </div>
