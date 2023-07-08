@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import homepageImg from '../../images/HomePage.png'
 import MoodTrackImg from '../../images/Faces.png'
 import JournalingImg from '../../images/ThoughtsWithDoctor.png'
@@ -39,6 +39,7 @@ const userid = props.userid
 // console.log(userid)
 const todayMood = props.todayMood
 
+// console.log(props.lastMood)
 
   const navigate = useNavigate()
 
@@ -79,8 +80,7 @@ const todayMood = props.todayMood
             
             <div className="app-and-mood2">
                 <h4>How are you feeling today?</h4>
-
-                <MoodTracker userid={userid} todayMood={todayMood} />
+      <MoodTracker userid={userid} moods={props.moods} lastMood={props.lastMood} />
             </div>
         </div>
         ):(<></>)}

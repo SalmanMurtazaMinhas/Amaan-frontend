@@ -16,20 +16,19 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/en";
+import $ from "jquery";
 
-const faCheckPascalCased = faCheck;
-library.add(faCheckPascalCased);
 
 export default function MoodTracker(props) {
-  console.log(props)
-  const [mood, setMood] = useState("");
   const [userMessage, setUserMessage] = useState("");
 
-  const [moods, setMoods] = useState([]);
+  const [mood, setMood] = useState('');
+  const [moods, setMoods] = useState(props.moods);
   const [userId, setUserId] = useState(props.userid);
 
-  const [lastMood, setLastMood] = useState('')
+  const [selectedMood, setSelectedMood] = useState(null);
 
+  const [lastMood, setLastMood] = useState(props.lastMood)
   const getDate = new Date();
   const currentYear = getDate.getFullYear();
   const currentMonth = getDate.getMonth();
@@ -39,35 +38,43 @@ export default function MoodTracker(props) {
   );
   const [todayMood, setTodayMood] = useState({});
 
-  console.log("Today's date is " + currentDate);
+
+  // console.log("Today's date is " + currentDate);
 
   useEffect(() => {
-    getAllMoods();
-
 
   }, []);
 
   useEffect(() => {
-    getLastMood()
+    // getLastMood();
+    // setMoods(props.moods)
+    setLastMood(props.lastMood)
+
+
   })
 
-  const getAllMoods = async () => {
-    const response = await axios.get("mood/index", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
-    // console.log(response)
-    setMoods(response.data);
+  // const getAllMoods = async () => {
+  //   const response = await axios.get("mood/index", {
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   });
+  //   // console.log(response)
+  //   setMoods(response.data);
 
-  };
+  // };
 
-  const getLastMood = () => {
-    console.log(moods)
-    let lastMood = moods.splice( -1, 1)
-    console.log(lastMood)
+  // console.log(moods)
 
-  }
+  // Function to get last mood in database
+  // const getLastMood = async () => {
+  
+  //   let last = moods.length - 1
+  //   console.log(last)
+  //   setLastMood(moods[last])
+  
+  //   console.log(lastMood.mood)
+  // }
 
   // Function that takes the mood of today
   // const currentMoodSetter = () => {
@@ -94,14 +101,21 @@ export default function MoodTracker(props) {
   //   console.log(todayMood);
   // };
 
+
+
   const handleMoodChange = (mood) => {
     const currentMood = mood;
     // console.log(currentMood)
     setMood(currentMood);
+    setSelectedMood(mood);
+
+    // Disable the other buttons.
+    $(".mood-button").prop("disabled", true);
+    $(`#${mood}`).prop("disabled", false);
   };
 
   const handleSaveMood = async (e) => {
-    console.log(mood);
+    // console.log(mood);
     try {
       e.preventDefault();
 
@@ -120,19 +134,25 @@ export default function MoodTracker(props) {
           },
         }
       );
-      console.log(response);
 
-      setTodayMood(
-        response.data.mood === "face-smile-beam"
-          ? faFaceSmileBeam
-          : response.data.mood === "face-meh-blank"
-          ? faFaceMehBlank
-          : response.data.mood === "face-frown-open"
-          ? faFaceFrownOpen
-          : null
-      );
+      setSelectedMood(null);
+      $(".mood-button").prop("disabled", true);
+      $(".mood-button").hide();
+      $(".save-button").hide();
+  
+      // console.log(response);
+
+      // setTodayMood(
+      //   response.data.mood === "face-smile-beam"
+      //     ? faFaceSmileBeam
+      //     : response.data.mood === "face-meh-blank"
+      //     ? faFaceMehBlank
+      //     : response.data.mood === "face-frown-open"
+      //     ? faFaceFrownOpen
+      //     : null
+      // );
       
-      console.log(todayMood)
+      // console.log(todayMood)
 
       if (response.status === 201) {
         setUserMessage("Your Mood Has Been Added");
@@ -142,38 +162,38 @@ export default function MoodTracker(props) {
     }
   };
 
-  const allMoods = moods.map((mood) => {
-    if (mood.user === userId) {
-      if (mood.date === currentDate) {
-        return (
-          <div>
-            <FontAwesomeIcon
-              className="mood-icon"
-              icon={
-                mood.mood === "face-smile-beam"
-                  ? faFaceSmileBeam
-                  : mood.mood === "face-meh-blank"
-                  ? faFaceMehBlank
-                  : mood.mood === "face-frown-open"
-                  ? faFaceFrownOpen
-                  : null
-              }
-              style={
-                mood.mood === "face-smile-beam"
-                  ? { color: "green" }
-                  : mood.mood === "face-meh-blank"
-                  ? { color: "yellow" }
-                  : mood.mood === "face-frown-open"
-                  ? { color: "red" }
-                  : null
-              }
-              size="2xl"
-            />
-          </div>
-        );
-      }
-    }
-  });
+  // const allMoods = moods.map((mood) => {
+  //   if (mood.user === userId) {
+  //     if (mood.date === currentDate) {
+  //       return (
+  //         <div>
+  //           <FontAwesomeIcon
+  //             className="mood-icon"
+  //             icon={
+  //               mood.mood === "face-smile-beam"
+  //                 ? faFaceSmileBeam
+  //                 : mood.mood === "face-meh-blank"
+  //                 ? faFaceMehBlank
+  //                 : mood.mood === "face-frown-open"
+  //                 ? faFaceFrownOpen
+  //                 : null
+  //             }
+  //             style={
+  //               mood.mood === "face-smile-beam"
+  //                 ? { color: "green" }
+  //                 : mood.mood === "face-meh-blank"
+  //                 ? { color: "yellow" }
+  //                 : mood.mood === "face-frown-open"
+  //                 ? { color: "red" }
+  //                 : null
+  //             }
+  //             size="2xl"
+  //           />
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // });
 
 
   return (
@@ -184,7 +204,8 @@ export default function MoodTracker(props) {
 
         <div className="mood-icons">
           <button
-            className="mood"
+            id="happy-button"
+            className="mood-button"
             onClick={() => handleMoodChange("face-smile-beam")}
           >
             <FontAwesomeIcon
@@ -195,7 +216,8 @@ export default function MoodTracker(props) {
             />
           </button>
           <button
-            className="mood"
+            id="meh-button"
+            className="mood-button"
             onClick={() => handleMoodChange("face-meh-blank")}
           >
             <FontAwesomeIcon
@@ -206,7 +228,8 @@ export default function MoodTracker(props) {
             />
           </button>
           <button
-            className="mood"
+            id="sad-button"
+            className="mood-button"
             onClick={() => handleMoodChange("face-frown-open")}
           >
             <FontAwesomeIcon
@@ -218,16 +241,17 @@ export default function MoodTracker(props) {
           </button>
         </div>
 
-        <Button variant="primary" onClick={handleSaveMood}>
+        <Button variant="primary" onClick={handleSaveMood} className="save-button" >
           Save
         </Button>
+{lastMood.mood? 
         <FontAwesomeIcon
           className="mood-icon"
-          icon={lastMood}
+          icon={lastMood.mood === 'face-smile-beam' ? faFaceSmileBeam : lastMood.mood === 'face-meh-blank' ? faFaceMehBlank : lastMood.mood === 'face-frown-open' ? faFaceFrownOpen : null}
           style={lastMood.mood === 'face-smile-beam' ? { color: "green" } : lastMood.mood === 'face-meh-blank' ? { color: "yellow" } : lastMood.mood === 'face-frown-open' ? { color: "red" } : null}
           size="2xl"
         />
-
+: <></>}
         {/* <DateCalendar /> */}
       </div>
     </LocalizationProvider>
