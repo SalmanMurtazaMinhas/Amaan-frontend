@@ -6,6 +6,8 @@
 body {
   background-color: #f9f9f9;
   font-family: 'Didact Gothic';
+  background-image: url('../src/images/background2.jpg');
+  background-position: center;
 }
 
 .navBar {
@@ -208,8 +210,8 @@ body {
 /* --------------------------------------------------------------- */
 .main-footer {
   background-color: #BEAEE2;
-  height: 200px;
-  margin-top: 200px;
+  height: 100px;
+  margin-top: 50px;
 
 }
 
@@ -219,7 +221,42 @@ body {
   color: #FFF
 }
 
-/* ---------------------------------------------------------------- */
-.group-hug {
-  width: 600px;
+/*  */
+
+
+.list {
+  overflow-y: scroll;
+  height: 470px;
+  width: 600PX;
+  background-color: #eefcfa;
+
+}
+
+.listItem {
+  opacity: 0.7;
+}
+
+.listItem:hover {
+  opacity: 1;
+}
+
+.comingSoon {
+  position: relative;
+  bottom: 95px;
+}
+
+.comingSoonText {
+  position: relative;
+  bottom: 50px;
+  margin: 0 auto;
+  width: 10vw; 
+}
+
+
+.journalText {
+  overflow-y: scroll;
+  height: 570px;
+  width: 600PX;
+
+
 }

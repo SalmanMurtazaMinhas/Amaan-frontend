@@ -8,8 +8,14 @@ import { Typography } from '@material-ui/core'
 import { Button, withStyles } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MoodTracker from '../mood/MoodTracker'
+import Lottie, {LottieRefCurrentProps, } from "lottie-react";
 
 import { useNavigate, Link } from 'react-router-dom';
+
+import comingSoon from '../../assets/colleagues-working-together.json'
+const style = {
+      height: 350,
+    };
 
 const StyledButtons = withStyles({
     root: {
@@ -75,6 +81,17 @@ const todayMood = props.todayMood
           <div className="app-mood">
             <div className="app-and-mood">
                 <h4>Upcoming appointments</h4>
+
+                <div className='comingSoon'>
+                  <Lottie
+                // lottieRef={writingRef}   
+                      animationData={comingSoon}
+                style={style}
+                // interactivity={interactivity}
+                  />
+                  <h5 className='comingSoonText'>Coming Soon!</h5>
+        </div>
+
             </div>
             
             <div className="app-and-mood2">
