@@ -14,8 +14,9 @@ export default function BookAppointmentIndex(){
             
         const response = await axios.get('/bookappointment/index')
 
-        console.log('Book appointments response', response)
+        console.log('Book appointments response', response.data[0].specialist.Name)
         setBookAppointments(response.data)
+        
     }
         catch(error){
             console.log(error.message)
@@ -32,9 +33,9 @@ export default function BookAppointmentIndex(){
         return (
             <div key={bookAppointment._id}>
 
-                <h3>{bookAppointment.specialist}</h3>
+                <h3>{bookAppointment.specialist.Name}</h3>
                 <h3>{bookAppointment.time}</h3>
-                <h3>{bookAppointment.date}</h3>
+                {/* <h3>{bookAppointment.date}</h3> */}
 
                 <button onClick={() => {handleDelete(bookAppointment._id)}}>Delete</button>
             </div>

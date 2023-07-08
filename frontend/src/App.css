@@ -6,8 +6,6 @@
 body {
   background-color: #f9f9f9;
   font-family: 'Didact Gothic';
-  background-image: url('../src/images/background2.jpg');
-  background-position: center;
 }
 
 .navBar {
@@ -264,3 +262,9 @@ body {
 
 
 }
+
+.navUl , .navLi {
+  display: flex;
+  
+}
+
