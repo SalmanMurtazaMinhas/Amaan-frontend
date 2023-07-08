@@ -19,6 +19,7 @@ const customStyles = makeStyles({
     card: {
         width: '100%',
         height: 430,
+        marginBottom: 200,
         display: 'flex',
         justifyContent: 'center',
     },

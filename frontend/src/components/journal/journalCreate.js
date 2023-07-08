@@ -6,6 +6,12 @@ import {EditorState, convertToRaw} from 'draft-js'
 import JournalCreateImage from '../../images/NightSky.png'
 import { Button, withStyles } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom';
+import Lottie, {LottieRefCurrentProps, } from "lottie-react";
+import { InteractivityProps } from 'lottie-react';
+
+import typingGuy from '../../assets/typing-guy.json'
+import computerTyping from '../../assets/computer-operator-typing.json'
+import writingLamp from '../../assets/man-working-under-lamp-light.json'
 
 const JournalButton = withStyles({
     root: {
@@ -97,7 +103,9 @@ export default function JournalCreate() {
 
             <JournalButton  variant='primary' onClick={handleSubmit}>Save</JournalButton>
         </Container>
-        <img className="createJournalImg" src={JournalCreateImage} alt=""/>
+        {/* <img className="createJournalImg" src={JournalCreateImage} alt=""/> */}
+        <Lottie animationData={writingLamp}/> &nbsp; 
+        {/* <Lottie animationData={typingGuy}/> */}
         </div>
         
     </div>

@@ -5,6 +5,16 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import JournalDetailImage from '../../images/SheepSleep.png'
 import { Button, withStyles } from '@material-ui/core'
 
+import Lottie, {LottieRefCurrentProps, } from "lottie-react";
+import { InteractivityProps } from 'lottie-react';
+
+import animation from '../../assets/relaxing.json'
+
+const style = {
+    // height: 750,
+    width: 550
+  };
+
 const IndexButton = withStyles({
     root: {
         background: '#BEAEE2',
@@ -55,12 +65,21 @@ export default function JournalDetail(){
                 {/* <img className="journalDetailImage" src={JournalDetailImage} alt=""/> */}
                 <IndexButton><Link to="/create-journal" className="addJournalButton">Add a Journal</Link></IndexButton> &nbsp;
                 
-                <div style={{  backgroundColor: '#F7DBF0', margin: '20px', padding: '30px', width: '700px' }}>
+                <div className='journalText' style={{  backgroundColor: '#ebe6f6', margin: '20px', padding: '30px', width: '700px' }}>
                     <Editor
                     readOnly={true}
                     editorState={journal.data.editorBody}
                     />
                 </div>
+
+                <div style={{margin: '0, auto', position: 'absolute', left: '700px', bottom: '30px'}}>
+            <Lottie
+                // lottieRef={writingRef}   
+                animationData={animation}
+                style={style}
+                // interactivity={interactivity}
+                />
+        </div>
                     
             </>
         )

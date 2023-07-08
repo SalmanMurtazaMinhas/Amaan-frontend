@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios'
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { Card, CardContent, Button, withStyles } from '@material-ui/core'
+import { Card, CardContent, Button, withStyles, ListItem, ListItemText } from '@material-ui/core'
+import Lottie, {LottieRefCurrentProps, } from "lottie-react";
+import { InteractivityProps } from 'lottie-react';
 
+import writingJournal from '../../assets/man-writing.json'
+import typingGuy from '../../assets/typing-guy.json'
 
 const DeleteButton = withStyles({
     root: {
@@ -20,12 +24,53 @@ const DeleteButton = withStyles({
     }
 })(Button);
 
+const IndexButton = withStyles({
+    root: {
+        background: '#BEAEE2',
+        color: '#FFFFFF',
+        marginBottom: '10px',
+        marginLeft: '40px',
+        width: '300px',
+      '&:hover' : {
+        background: '#CDF0EA',
+        color: '#000'
+      }
+    }
+})(Button);
+
 export default function JournalIndex(props){
+
+    // const writingRef = useRef<LottieRefCurrentProps>(null)
 
     const [journals, setJournals] = useState([])
     const [userId, setUserId] = useState(props.userid)
     console.log(props)
   const [loading, setLoading] = useState(true)
+
+//   const style = {
+//     height: 300,
+//   };
+  
+//   const interactivity = {
+//     mode: "scroll",
+//     actions: [
+//       {
+//         visibility: [0, 0.2],
+//         type: "stop",
+//         frames: [0],
+//       },
+//       {
+//         visibility: [0.2, 0.45],
+//         type: "seek",
+//         frames: [0, 45],
+//       },
+//       {
+//         visibility: [0.45, 1.0],
+//         type: "loop",
+//         frames: [45, 60],
+//       },
+//     ],
+//   };
 
     
 
@@ -69,7 +114,7 @@ export default function JournalIndex(props){
 
         if(journal.user === userId){
       return (
-        <div>
+        <div className='listItem'>
             
             <div key={journal._id} className="parentJournalCards">
                 <Card className="journalCards">
@@ -89,7 +134,7 @@ export default function JournalIndex(props){
 
             
             </div>
-            
+             
         </div>
         
             
@@ -101,9 +146,21 @@ export default function JournalIndex(props){
 
     return (
         <>
+        <h1 style={{margin : '0 auto', width: '20%'}}>My Journals</h1>
+        <IndexButton><Link to="/create-journal" className="addJournalButton">Add a Journal</Link> &nbsp;</IndexButton>
+        
+        <div style={{margin: '0, auto', position: 'absolute', left: '500px', bottom: '30px'}}>
+            <Lottie
+                // lottieRef={writingRef}   
+                animationData={writingJournal}
+                // style={style}
+                // interactivity={interactivity}
+                />
+        </div>
+        <div className='list'>
 
-        <Link to="/create-journal">Add a Journal</Link> &nbsp;
         {allJournals}
+        </div>
         </>
     )
 
