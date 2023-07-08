@@ -45,11 +45,25 @@ export default function App() {
     const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false)
+  const [moodsLoaded, setMoodsLoaded] = useState(false)
+  const [status, setstatus] = useState(500)
+
   const navigate = useNavigate()
+
+  const [moods, setMoods] = useState([]);
+  const [lastMood, setLastMood] = useState({});
+  const getDate = new Date();
+
+  const year = getDate.getFullYear();
+  const month = getDate.getMonth();
+  const day = getDate.getDay();
+
+  const date = `${day}-${month}-${year}`;
 
     const [todayMood, setTodayMood] = useState({})
 
     useEffect(() => {
+        
         let token = localStorage.getItem("token")
         if (token != null){
             let user = jwt_decode(token);
@@ -64,11 +78,14 @@ export default function App() {
                 setIsAuth(false)
             }
         }
-    }, [])
+    
 
+    }, [])
     useEffect(() => {
-        setTodayMood(todayMood)
+    getAllMoods();
+    getLastMood()
     })
+
 
     const registerHandler = (user) => {
         axios.post("auth/signup", user)
@@ -102,8 +119,11 @@ export default function App() {
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
+
                 
             }
+
+
         }).catch(error => {
             console.log(error)
         })
@@ -118,6 +138,53 @@ export default function App() {
         navigate("/")
       }
     
+      const getAllMoods = async () => {
+        const response = await axios.get("mood/index", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        // console.log(response)
+    setMoods(response.data);
+    setMoodsLoaded(true)
+
+         }
+
+    const getLastMood = async () => {
+        const response = await axios.get('mood/last', {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            });
+        if (response.data.date === date){
+        setLastMood(response.data);
+        } else {
+            setLastMood("You haven't saved a mood yet!")
+        }
+    }
+    
+
+
+
+      
+
+
+
+
+    // Function to get last mood in database
+//       const getLastMood = async () => {
+//         if(moods)   { 
+//             let last = moods.length - 1
+//             console.log(last)
+//             setLastMood(moods[last])
+//             console.log(lastMood.mood)
+
+  
+//   } else {
+//     null
+//   }
+      
+
 
     return(
         <ThemeProvider theme={theme}>
@@ -150,7 +217,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage userid= { user?.user? user.user.id : null} todayMood={todayMood} isAuth={isAuth}/>}
+                    element={loaded && <HomePage userid= { user?.user? user.user.id : null}  lastMood={lastMood} moods={moods} isAuth={isAuth}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -163,7 +230,15 @@ export default function App() {
                     />
                     <Route
                     path='/mood'
-                    element={loaded && isAuth ? <MoodTracker userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
+                    element={loaded && isAuth ? <MoodTracker moods={moods} lastMood={lastMood} userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
+                    />
+                    <Route
+                    path='/mood/index'
+                    element={<MoodTracker />}
+                    />
+                    <Route
+                    path='/mood/last'
+                    element={<MoodTracker />}
                     />
                     <Route 
                     path="/signup"
