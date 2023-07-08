@@ -21,6 +21,7 @@ import SpecialistIndex from './components/Specialist/SpecialistIndex';
 import Footer from './components/home/Footer';
 import SupportGroupForm from './components/supportGroups/SupportGroupForm';
 import SupportGroupIndex from './components/supportGroups/SupportGroupIndex';
+import MoodCalendar from './components/mood/MoodCalendar.js'
 
 const theme = createTheme({
     palette: {
@@ -138,7 +139,7 @@ export default function App() {
       }
     
       const getAllMoods = async () => {
-        const response = await axios.get("mood/index", {
+        const response = await axios.get("/mood/index", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
@@ -150,7 +151,7 @@ export default function App() {
          }
 
     const getLastMood = async () => {
-        const response = await axios.get('mood/last', {
+        const response = await axios.get('/mood/last', {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
               },
@@ -170,21 +171,6 @@ export default function App() {
 
 
 
-    // Function to get last mood in database
-//       const getLastMood = async () => {
-//         if(moods)   { 
-//             let last = moods.length - 1
-//             console.log(last)
-//             setLastMood(moods[last])
-//             console.log(lastMood.mood)
-
-  
-//   } else {
-//     null
-//   }
-      
-
-
     return(
         <ThemeProvider theme={theme}>
             <div>
@@ -200,7 +186,7 @@ export default function App() {
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
                     <Link to="/" className="navItem">Home</Link> &nbsp;
                     <Link to="/about" className="navItem">About</Link> &nbsp;
-                    <Link to="/mood" className="navItem">Mood</Link> &nbsp;
+                    <Link to="/mood/calendar" className="navItem">Mood</Link> &nbsp;
                     <Link to="/journal" className="navItem">My Journals</Link> &nbsp;
                     {/* <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp; */}
                     {/* <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp; */}
@@ -238,6 +224,10 @@ export default function App() {
                     <Route
                     path='/mood/last'
                     element={<MoodTracker />}
+                    />
+                    <Route
+                    path='/mood/calendar'
+                    element={<MoodCalendar />}
                     />
                     <Route 
                     path="/signup"

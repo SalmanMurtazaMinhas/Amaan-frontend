@@ -1,5 +1,10 @@
 
 /* Mood tracker */
+
+.mood-tracker {
+  text-align: center;
+
+}
 .mood-icons {
   width: 500px;
   text-align: center;
@@ -8,7 +13,7 @@
 }
 
 .mood-icon {
-  font-size: 70px;
+  font-size: 90px;
   padding: 20px;
 
 }
@@ -17,10 +22,11 @@
   all: unset;
   cursor: pointer;
   display: inline-block;
-  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   -webkit-transition: all ease-in-out 300ms;
   transition: all ease-in-out 300ms;
+  animation: button-click 0.5s ease-in-out;
+
 }
 .button:hover {
   box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
@@ -35,7 +41,20 @@
 }
 
 .mood:focus {
-  background-color: rgba(148, 147, 147, 0.5);
+  background-color: red;
   border-radius: 50%;
 
+
+}
+
+@keyframes button-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

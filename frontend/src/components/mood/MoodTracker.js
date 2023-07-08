@@ -210,7 +210,7 @@ export default function MoodTracker(props) {
           >
             <FontAwesomeIcon
               className="mood-icon"
-              icon={faFaceSmileBeam}
+              icon={faFaceSmileBeam} beat
               style={{ color: "green" }}
               size="2xl"
             />
@@ -222,7 +222,7 @@ export default function MoodTracker(props) {
           >
             <FontAwesomeIcon
               className="mood-icon"
-              icon={faFaceMehBlank}
+              icon={faFaceMehBlank} beat
               style={{ color: "yellow" }}
               size="2xl"
             />
@@ -234,7 +234,7 @@ export default function MoodTracker(props) {
           >
             <FontAwesomeIcon
               className="mood-icon"
-              icon={faFaceFrownOpen}
+              icon={faFaceFrownOpen} beat
               style={{ color: "red" }}
               size="2xl"
             />
