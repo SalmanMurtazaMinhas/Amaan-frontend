@@ -82,13 +82,10 @@ export default function App() {
                 setIsAuth(false)
             }
         }
-    
+        getAllMoods();
+        getLastMood()
 
     }, [])
-    useEffect(() => {
-    getAllMoods();
-    getLastMood()
-    })
 
 
     const registerHandler = (user) => {
@@ -179,8 +176,20 @@ export default function App() {
         <ThemeProvider theme={theme}>
             <div>
                 
-                <nav className="navBar">
+                
                     <div>
+
+                <nav id="nav">
+                    <ul className='navUl'>
+                        <li className='shape-circle circle-one'><Link to="/" className="navItem">Home</Link></li>
+                        <li className='shape-circle circle-two'><Link to="/about" className="navItem">About</Link></li>
+                        <li className='shape-circle circle-three'><Link to="/mood/calendar" className="navItem">Mood</Link></li>
+                        <li className='shape-circle circle-five'><Link to="/journal" className="navItem">My Journals</Link></li>
+                        <li className='navLi'>{!isAuth ? <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>:
+                        <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link>}</li>
+                    </ul>
+                </nav>
+
                     {/* <Typography 
                     variant="h5"
                     color="secondary"
@@ -188,20 +197,20 @@ export default function App() {
                       Amaan
                     </Typography> */}
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
-                    <Link to="/" className="navItem">Home</Link> &nbsp;
+                    {/* <Link to="/" className="navItem">Home</Link> &nbsp;
                     <Link to="/about" className="navItem">About</Link> &nbsp;
                     <Link to="/mood/calendar" className="navItem">Mood</Link> &nbsp;
-                    <Link to="/journal" className="navItem">My Journals</Link> &nbsp;
+                    <Link to="/journal" className="navItem">My Journals</Link> &nbsp; */}
                     {/* <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp; */}
                     {/* <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp; */}
                     {/* <Link to="/specialist/index" className="navItem">Specialists Index</Link> &nbsp; */}
                     {/* <Link to="/specialist" className="navItem">Specialists</Link> &nbsp; */}
-                    {!isAuth && <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>} &nbsp;
+                    {/* {!isAuth && <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>} &nbsp;
 
-                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> }
+                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> } */}
 
                     </div>
-                </nav>
+                
                 <Routes>
 
                 <Route
