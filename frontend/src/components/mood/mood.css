@@ -61,8 +61,8 @@
 
 .footer-clean {
   padding:50px 0;
-  background-color:#fff;
-  color:#4b4c4d;
+  background-color:#BEAEE2;
+  color: #fff;
 }
 
 .footer-clean h3 {
@@ -144,3 +144,4 @@
   font-size:13px;
   opacity:0.6;
 }
+
