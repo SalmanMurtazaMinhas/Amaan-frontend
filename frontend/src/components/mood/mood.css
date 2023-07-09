@@ -39,7 +39,20 @@
   border-radius: 50%;
 
 }
+.save-button {
+  background-color: #BEAEE2;
+  border: 1px solid #BEAEE2;
+  color: #fff;
+  width: 150px;
+  margin-top: 5px;
+}
 
+.save-button:hover {
+    border: 1px solid #CDF0EA;
+    background-color: #CDF0EA;
+    color: #000;
+
+}
 .mood:focus {
   background-color: red;
   border-radius: 50%;
