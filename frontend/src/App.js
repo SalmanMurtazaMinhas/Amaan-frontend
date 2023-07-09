@@ -235,11 +235,12 @@ export default function App() {
                     />
                     <Route
                     path='/mood'
-                    element={loaded && isAuth ? <MoodTracker moods={moods} lastMood={lastMood} userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
+                    element={loaded && isAuth ? <MoodTracker getAllMoods={getAllMoods} getLastMood={getLastMood} moods={moods} lastMood={lastMood} userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/mood/index'
-                    element={<MoodTracker />}
+        
+                    element={<MoodTracker g/>}
                     />
                     <Route
                     path='/mood/last'

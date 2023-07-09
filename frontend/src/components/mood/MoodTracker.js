@@ -135,6 +135,9 @@ export default function MoodTracker(props) {
         }
       );
 
+      props.getAllMoods()
+      props.getLastMood()
+
       setSelectedMood(null);
       $(".mood-button").prop("disabled", true);
       $(".mood-button").hide();

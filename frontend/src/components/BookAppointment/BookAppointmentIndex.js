@@ -15,7 +15,7 @@ export default function BookAppointmentIndex(){
             
         const response = await axios.get('/bookappointment/index')
 
-        console.log('Book appointments response', response.data[0].specialist.Name)
+        console.log('Book appointments response', response.data)
         setBookAppointments(response.data)
         
     }
