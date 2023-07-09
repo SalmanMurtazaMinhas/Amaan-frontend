@@ -103,8 +103,8 @@ export default function JournalCreate() {
 
             <JournalButton  variant='primary' onClick={handleSubmit}>Save</JournalButton>
         </Container>
-        {/* <img className="createJournalImg" src={JournalCreateImage} alt=""/> */}
-        <Lottie animationData={writingLamp}/> &nbsp; 
+        <img className="createJournalImg" src={JournalCreateImage} alt=""/>
+        {/* <Lottie animationData={writingLamp}/> &nbsp;  */}
         {/* <Lottie animationData={typingGuy}/> */}
         </div>
         

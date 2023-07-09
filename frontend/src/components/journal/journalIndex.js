@@ -7,7 +7,7 @@ import Lottie, {LottieRefCurrentProps, } from "lottie-react";
 import { InteractivityProps } from 'lottie-react';
 
 import writingJournal from '../../assets/man-writing.json'
-import typingGuy from '../../assets/typing-guy.json'
+import writingLamp from '../../assets/man-working-under-lamp-light.json'
 
 const DeleteButton = withStyles({
     root: {
@@ -47,9 +47,11 @@ export default function JournalIndex(props){
     // console.log(props)
   const [loading, setLoading] = useState(true)
 
-//   const style = {
-//     height: 300,
-//   };
+  const [userName, setUserName] = useState('')
+
+  const style = {
+    height: 400,
+  };
   
 //   const interactivity = {
 //     mode: "scroll",
@@ -112,7 +114,13 @@ export default function JournalIndex(props){
 
     const allJournals = journals.map(journal => {
 
-        if(journal.user === userId){
+        
+        if(journal.user._id === userId){
+            
+            if(!userName) {
+                setUserName(journal.user.firstName)
+            }
+            
       return (
         <div className='listItem'>
             
@@ -149,11 +157,12 @@ export default function JournalIndex(props){
         <h1 style={{margin : '0 auto', width: '20%'}}>My Journals</h1>
         <IndexButton><Link to="/create-journal" className="addJournalButton">Add a Journal</Link> &nbsp;</IndexButton>
         
-        <div style={{margin: '0, auto', position: 'absolute', left: '500px', bottom: '30px'}}>
+        <div style={{margin: '0, auto', position: 'absolute', left: '700px'}}>
             <Lottie
                 // lottieRef={writingRef}   
-                animationData={writingJournal}
-                // style={style}
+                // animationData={writingJournal}
+                animationData={writingLamp}
+                style={style}
                 // interactivity={interactivity}
                 />
         </div>
