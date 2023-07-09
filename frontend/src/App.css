@@ -10,7 +10,7 @@ body {
 
 .navBar {
   background-color: #BEAEE2;
-  padding: 20px;
+  padding: 27px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -266,5 +266,18 @@ body {
 .navUl , .navLi {
   display: flex;
   
+}
+.navUl {
+  justify-content: end;
+}
+
+.navLi {
+ padding: 0 10px;
+}
+
+.logo {
+  position: absolute;
+  right: 77%;
+  top: 5px
 }
 
