@@ -26,6 +26,8 @@ import MoodCalendar from './components/mood/MoodCalendar.js'
 
 import MyBookings from './components/supportGroups/MyBookings';
 
+import logo from './images/app-logo.png'
+
 
 const theme = createTheme({
     palette: {
@@ -82,13 +84,10 @@ export default function App() {
                 setIsAuth(false)
             }
         }
-    
+        getAllMoods();
+        getLastMood()
 
     }, [])
-    useEffect(() => {
-    getAllMoods();
-    getLastMood()
-    })
 
 
     const registerHandler = (user) => {
@@ -166,6 +165,10 @@ export default function App() {
             setLastMood("You haven't saved a mood yet!")
         }
     }
+
+    const navigateJHome = () => {
+        navigate('/')
+      }
     
 
 
@@ -179,8 +182,21 @@ export default function App() {
         <ThemeProvider theme={theme}>
             <div>
                 
-                <nav className="navBar">
+                
                     <div>
+
+                <nav id="nav" className='navBar'>
+                    <ul className='navUl'>
+                        <img className="images logo" src={logo} onClick={navigateJHome} ></img>
+                        <li className='navLi'><Link to="/" className="navItem">Home</Link></li>
+                        <li className='navLi'><Link to="/journal" className="navItem">My Journals</Link></li>
+                        <li className='navLi'><Link to="/mood/calendar" className="navItem">Mood</Link></li>
+                        <li className='navLi'><Link to="/bookappointment/index" className="navItem">Appointments</Link></li>
+                        <li className='navLi'>{!isAuth ? <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>:
+                        <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link>}</li>
+                    </ul>
+                </nav>
+
                     {/* <Typography 
                     variant="h5"
                     color="secondary"
@@ -188,25 +204,25 @@ export default function App() {
                       Amaan
                     </Typography> */}
                     {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
-                    <Link to="/" className="navItem">Home</Link> &nbsp;
+                    {/* <Link to="/" className="navItem">Home</Link> &nbsp;
                     <Link to="/about" className="navItem">About</Link> &nbsp;
                     <Link to="/mood/calendar" className="navItem">Mood</Link> &nbsp;
-                    <Link to="/journal" className="navItem">My Journals</Link> &nbsp;
+                    <Link to="/journal" className="navItem">My Journals</Link> &nbsp; */}
                     {/* <Link to="/bookappointment" className="navItem">Book An Appointment</Link> &nbsp; */}
                     {/* <Link to="/bookappointment/index" className="navItem">Appointments Index</Link> &nbsp; */}
                     {/* <Link to="/specialist/index" className="navItem">Specialists Index</Link> &nbsp; */}
                     {/* <Link to="/specialist" className="navItem">Specialists</Link> &nbsp; */}
-                    {!isAuth && <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>} &nbsp;
+                    {/* {!isAuth && <Link to="/signin" onClick={loginHandler} className="navItem">Login</Link>} &nbsp;
 
-                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> }
+                    { isAuth && <Link to='/logout' onClick={logoutHandler} className="navItem">Logout</Link> } */}
 
                     </div>
-                </nav>
+                
                 <Routes>
 
                 <Route
                     path='/'
-                    element={loaded && <HomePage userid= { user?.user? user.user.id : null}  lastMood={lastMood} moods={moods} isAuth={isAuth}/>}
+                    element={<HomePage userid= { user?.user? user.user.id : null}  lastMood={lastMood} moods={moods} isAuth={isAuth}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -215,7 +231,7 @@ export default function App() {
                     <Route
                     path='/journal'
 
-                    element={loaded && isAuth ? <JournalIndex userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
+                    element={isAuth ? <JournalIndex userid= { user?.user? user.user.id : null}/> : <Signin login={loginHandler}/>}
                     />
                     <Route
                     path='/mood'
