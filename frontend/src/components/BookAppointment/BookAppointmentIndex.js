@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BrainWorkImg from '../../images/BrainWork.png'
 
 export default function BookAppointmentIndex(){
 
@@ -31,7 +32,7 @@ export default function BookAppointmentIndex(){
 
     const allBookAppointments = bookAppointments.map(bookAppointment => {
         return (
-            <div key={bookAppointment._id}>
+            <div className="upcomingapp" key={bookAppointment._id}>
 
                 <h3>{bookAppointment.specialist.Name}</h3>
                 <h3>{bookAppointment.time}</h3>
@@ -43,11 +44,16 @@ export default function BookAppointmentIndex(){
     })
 
     return (
+        <form className="bookAppForm">
+        <h2 className="BookIndexTitle">Upcoming Appointment with a Mental Health Specialist</h2>
         <>
-
+        <div>
+        <img className="BrainWorkImg" src={BrainWorkImg} />
+        </div>
+        
         {/* <Link to="/create-journal">Add a Journal</Link> &nbsp; */}
         {allBookAppointments}
         </>
+        </form>
     )
-
 }
