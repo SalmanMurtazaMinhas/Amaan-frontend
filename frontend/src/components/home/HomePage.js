@@ -77,7 +77,7 @@ const todayMood = props.todayMood
         
             <img className="homepage" id="homepageImg" src={homepageImg} alt='homepage' />
             <h1 className="homepageGreeting">
-                Hello,  <br />
+                Hello,  {userid}<br />
                 Not feeling like yourself lately? You are not alone. <br /> We are here to help
                 <StyledButtons onClick={navigateBookAppointment}>BOOK COUNSELING SESSION</StyledButtons>
             </h1>
@@ -103,7 +103,7 @@ const todayMood = props.todayMood
             
             <div className="app-and-mood2">
                 <h4>How are you feeling today?</h4>
-      <MoodTracker userid={userid} moods={props.moods} lastMood={props.lastMood} />
+      <MoodTracker userid={userid} moods={props.moods} lastMood={props.lastMood} getAllMoods={props.getAllMoods} getLastMood={props.getLastMood}/>
             </div>
         </div>
         ):(<></>)}

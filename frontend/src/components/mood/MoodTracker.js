@@ -21,7 +21,7 @@ import $ from "jquery";
 
 export default function MoodTracker(props) {
   const [userMessage, setUserMessage] = useState("");
-
+  // console.log(props)
   const [mood, setMood] = useState('');
   const [moods, setMoods] = useState(props.moods);
   const [userId, setUserId] = useState(props.userid);

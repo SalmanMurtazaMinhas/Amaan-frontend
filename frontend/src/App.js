@@ -73,7 +73,6 @@ export default function App() {
         let token = localStorage.getItem("token")
         if (token != null){
             let user = jwt_decode(token);
-            console.log(user)
 
             if (user){
                 setIsAuth(true)
@@ -122,6 +121,7 @@ export default function App() {
                 let user = jwt_decode(token);
                 setIsAuth(true)
                 setUser(user)
+                console.log(user)
 
                 
             }
@@ -222,7 +222,7 @@ export default function App() {
 
                 <Route
                     path='/'
-                    element={<HomePage userid= { user?.user? user.user.id : null}  lastMood={lastMood} moods={moods} isAuth={isAuth}/>}
+                    element={<HomePage userid= { user?.user? user.user.id : null}  getAllMoods={getAllMoods} getLastMood={getLastMood} lastMood={lastMood} moods={moods} isAuth={isAuth}/>}
                     />
                     <Route
                     path='/create-journal'
@@ -240,7 +240,7 @@ export default function App() {
                     <Route
                     path='/mood/index'
         
-                    element={<MoodTracker g/>}
+                    element={<MoodTracker />}
                     />
                     <Route
                     path='/mood/last'
