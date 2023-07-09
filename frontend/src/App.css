@@ -106,8 +106,24 @@ body {
   margin-top: 30px;
   margin-bottom: -60px;
 }
+
+.BookIndexTitle{
+  text-align: right;
+  margin-top: 30px;
+  margin-bottom: -60px;
+}
+
+.upcomingapp{
+  background-color: #F7DBF0;
+  text-align: right;
+  margin-top: 30px;
+}
 .counselingImg {
   width: 700px;
+}
+
+.BrainWorkImg {
+  width: 400px;
 }
 
 .bookApp {
