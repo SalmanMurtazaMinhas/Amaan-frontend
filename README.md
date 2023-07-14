@@ -6,7 +6,8 @@ Amaan is a web application designed to help individuals manage their mental heal
 2. Technologies Used
 3. Wireframe and User Stories
 4. Entity-Relationship-Diagram
-5. Future Development
+5. Demo
+6. Future Development
 
 ## Features
 ### Booking Appointments with Mental Health Specialists
@@ -31,10 +32,9 @@ Amaan also includes a mood tracking feature that enables users to monitor their 
 7. ![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
 8. ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 9. ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-10.![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
-11.![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-12.![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-
+10. 10.![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
+11. 11.![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+12. 12.![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 
 
 ## Wireframes and User Stories
@@ -49,3 +49,20 @@ Amaan also includes a mood tracking feature that enables users to monitor their 
 
 
 ## Entity-Relationship-Diagram
+![ERD](https://media.git.generalassemb.ly/user/49240/files/82c861a0-6b74-4c32-aa13-ef23f9307a3b)
+
+## Demo
+![1689354658617](https://media.git.generalassemb.ly/user/49240/files/0bd2fff9-d598-4298-bde7-475dd7c259aa)
+![1689354665996](https://media.git.generalassemb.ly/user/49240/files/8ac201d5-ed4a-4053-b0f6-e0f7760b81dd)
+
+## Future Development
+Some of the features that we plan on implementing are:
+- Calendar that displays recorded moods and journals for a certain day
+- Payment gateway when booking online
+- Ability to post blogs and articles based on mental health
+- Be able to view latest appointments on homepage
+- Book support groups and have details emailed to you.
+
+
+
+
