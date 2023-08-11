@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Card, CardContent, TextField, Button, Typography, withStyles, makeStyles} from '@material-ui/core';
 import GroupHugImg from '../../images/GroupHug.png'
+import { useNavigate } from 'react-router-dom'
 
 const supportGroupCustomStyles = makeStyles({
     containerdiv: {
@@ -35,6 +36,8 @@ export default function SupportGroupForm() {
 
     const classes = supportGroupCustomStyles()
     const [newGroup, setNewGroup] = useState({});
+    const navigate = useNavigate()
+    
 
     const changeHandler = (event) => {
         
@@ -54,6 +57,7 @@ export default function SupportGroupForm() {
         console.log('Hey you clicked the save button for group therapy');
         const response = await axios.post('supportgroup/add', newGroup)
         console.log(response)
+        navigate('/supportgroup/index')
 
         if (response.status === 201) {
             console.log('A new group therpy session has been created!')

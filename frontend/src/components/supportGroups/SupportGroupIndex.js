@@ -56,6 +56,7 @@ export default function SupportGroupIndex() {
     const [userMessage, setUserMessage] = useState('')
     const [noOfSeats, setNoOfSeats] = useState()
 
+
     useEffect(() => {
         getAllSessions()
         getNoOfSeats()
@@ -84,6 +85,9 @@ export default function SupportGroupIndex() {
     }
 
     const allSupportGroups = supportGroups.map(supportGroup => {
+
+        const date = new Date(supportGroup.date)
+        const readableDate = date.toLocaleDateString();
         return (
             <div key={supportGroup._id} className={classes.maindiv}>
                 <Card className={classes.SGICard}>
@@ -95,7 +99,7 @@ export default function SupportGroupIndex() {
                         </div>
                         <div className={classes.SGIdiv2}>
                          
-                            <Typography className={classes.details}><img className={classes.icons} src={CalenderIcon}></img> {supportGroup.date}</Typography> 
+                            <Typography className={classes.details}><img className={classes.icons} src={CalenderIcon}></img> {readableDate}</Typography> 
                             <Typography className={classes.details}><img className={classes.icons} src={ClockIcon}></img> {supportGroup.time}</Typography> 
                             <Typography className={classes.details}><img className={classes.icons} src={PeopleIcon}></img> {supportGroup.noOfSeats}</Typography> 
                             <Typography className={classes.details}><img className={classes.icons} src={LocationIcon}></img> {supportGroup.location}</Typography>
