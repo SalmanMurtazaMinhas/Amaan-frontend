@@ -91,7 +91,7 @@ export default function App() {
 
 
     const registerHandler = (user) => {
-        axios.post(url+"auth/signup", user)
+        axios.post("https://amaan-backend.onrender.com/auth/signup", user)
         .then(res => {
           console.log(res)
 
@@ -106,7 +106,7 @@ export default function App() {
     
 
     const loginHandler = (cred) => {
-        axios.post(url+"auth/signin", cred)
+        axios.post("https://amaan-backend.onrender.com/auth/signin", cred)
         .then(res => {
             console.log(res)
             console.log(res.data.token)
