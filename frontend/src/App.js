@@ -28,6 +28,7 @@ import MyBookings from './components/supportGroups/MyBookings';
 
 import logo from './images/app-logo.png'
 
+const url = 'https://amaan-backend.onrender.com/'
 
 const theme = createTheme({
     palette: {
@@ -90,7 +91,7 @@ export default function App() {
 
 
     const registerHandler = (user) => {
-        axios.post("auth/signup", user)
+        axios.post(url+"auth/signup", user)
         .then(res => {
           console.log(res)
 
@@ -105,7 +106,7 @@ export default function App() {
     
 
     const loginHandler = (cred) => {
-        axios.post("auth/signin", cred)
+        axios.post(url+"auth/signin", cred)
         .then(res => {
             console.log(res)
             console.log(res.data.token)
