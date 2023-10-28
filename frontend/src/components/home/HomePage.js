@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import homepageImg from '../../images/HomePage.png'
+import homepageImg from '../../images/homepage.png'
 import MoodTrackImg from '../../images/Faces.png'
 import JournalingImg from '../../images/ThoughtsWithDoctor.png'
 import TherapySessionImg from '../../images/TherapySession.png'
@@ -77,7 +77,7 @@ const todayMood = props.todayMood
         
             <img className="homepage" id="homepageImg" src={homepageImg} alt='homepage' />
             <h1 className="homepageGreeting">
-                Hello,  {userid}<br />
+                Hello,<br />
                 Not feeling like yourself lately? You are not alone. <br /> We are here to help
                 <StyledButtons onClick={navigateBookAppointment}>BOOK COUNSELING SESSION</StyledButtons>
             </h1>
